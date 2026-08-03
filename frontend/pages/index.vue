@@ -9,7 +9,7 @@
         <div class="hero-content">
           <div class="hero-text-block">
             <p class="eyebrow floating">Holding Company Lintas Sektor</p>
-            <h1>Satu Grup,<br />Banyak <em>Sektor</em>,<br />Satu Komitmen Mitra.</h1>
+            <h1>Satu Grup, <br class="desktop-only" />Banyak <em>Sektor</em>, <br class="desktop-only" />Satu Komitmen Mitra.</h1>
             <p class="sub">
               PT Wanciruso Group Indonesia (WGI) memposisikan diri sebagai perusahaan holding terkemuka yang menaungi 8 unit bisnis strategis. Kami menghadirkan standar internasional (ISPM#15 & BARANTAN), efisiensi operasional, dan tata kelola korporat terbaik bagi seluruh mitra bisnis dan investor.
             </p>
@@ -73,8 +73,8 @@
         </div>
         <div>
           <p class="eyebrow">Rekam Jejak & Legasi</p>
-          <h2 style="margin-top:16px; font-size:clamp(28px,3.6vw,40px);">
-            Dari Usaha Spesialis Kemasan Kayu,<br />Menjadi Holding Nasional Terpercaya
+          <h2 style="margin-top:16px; font-size:clamp(24px,3.6vw,40px);">
+            Dari Usaha Spesialis Kemasan Kayu,<br class="desktop-only" />Menjadi Holding Nasional Terpercaya
           </h2>
           <div class="about-body" style="margin-top:24px;">
             <p>Perjalanan PT WGI membuktikan ketangguhan dan profesionalisme dalam melayani kebutuhan industri nasional hingga mancanegara.</p>
@@ -253,13 +253,17 @@ useSeoMeta({
 </script>
 
 <style scoped>
+.desktop-only {
+  display: inline;
+}
+
 /* HERO */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   align-items: center;
-  padding-top: 130px;
+  padding-top: 140px;
   padding-bottom: 80px;
   overflow: hidden;
 }
@@ -304,12 +308,14 @@ useSeoMeta({
 }
 
 .hero-text-block {
-  max-width: 860px;
+  max-width: 900px;
 }
 
 .hero h1 {
-  font-size: clamp(42px, 5.8vw, 78px);
-  margin-top: 22px;
+  font-size: clamp(28px, 5.2vw, 76px);
+  line-height: 1.15;
+  margin-top: 18px;
+  word-break: break-word;
 }
 
 .hero h1 em {
@@ -318,25 +324,25 @@ useSeoMeta({
 }
 
 .hero p.sub {
-  margin-top: 26px;
-  max-width: 680px;
+  margin-top: 22px;
+  max-width: 720px;
   color: var(--grey-lt);
-  font-size: 17.5px;
+  font-size: clamp(14px, 1.8vw, 17.5px);
   font-weight: 300;
-  line-height: 1.8;
+  line-height: 1.7;
 }
 
 .hero-actions {
   display: flex;
   gap: 18px;
-  margin-top: 42px;
+  margin-top: 36px;
   flex-wrap: wrap;
 }
 
 .hero-meta {
   display: flex;
   gap: 20px;
-  margin-top: 60px;
+  margin-top: 50px;
   padding: 28px 36px;
   width: 100%;
   max-width: 100%;
@@ -686,6 +692,38 @@ useSeoMeta({
   .adv-grid { grid-template-columns: repeat(2, 1fr); }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-num-bg { display: none; }
+}
+
+@media (max-width: 768px) {
+  .desktop-only { display: none; }
+  .hero {
+    padding-top: 110px;
+    padding-bottom: 50px;
+  }
+  .hero-actions {
+    margin-top: 28px;
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-meta {
+    margin-top: 36px;
+    padding: 20px;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .hero-meta div {
+    padding-right: 0;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 12px;
+  }
+  .hero-meta div:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
 }
 
 @media (max-width: 580px) {
