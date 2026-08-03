@@ -1,0 +1,16 @@
+# Dependencies & Build artifacts
+**/node_modules
+**/vendor
+**/.nuxt
+**/.output
+**/dist
+**/.env
+**/.env.*
+!**/.env.example
+
+# IDE & OS
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+*.log

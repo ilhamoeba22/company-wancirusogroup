@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PT Wanciruso Group Indonesia — Company Profile Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0E0D0C;
+    --charcoal:#171615;
+    --panel:#1E1D1B;
+    --grey-line:#2C2B29;
+    --grey:#8C8A86;
+    --grey-lt:#B8B5B0;
+    --white:#F7F5F2;
+    --red:#9B2B23;
+    --red-hi:#C23B2F;
+    --red-deep:#6E1D18;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:'Inter', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    line-height:1.08;
+    letter-spacing:0.005em;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1220px; margin:0 auto; padding:0 32px; position:relative;}
+  ::selection{background:var(--red); color:#fff;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px; font-weight:500;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+    color:var(--red-hi);
+    display:flex; align-items:center; gap:14px;
+  }
+  .eyebrow::before{content:""; width:32px; height:1px; background:var(--red-hi);}
+  .eyebrow.center{justify-content:center;}
+  .eyebrow.center::before{display:none;}
+
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity .9s cubic-bezier(.16,.84,.44,1), transform .9s cubic-bezier(.16,.84,.44,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  .btn{
+    font-family:'Inter'; font-weight:600; font-size:13px; letter-spacing:0.05em; text-transform:uppercase;
+    padding:16px 30px; display:inline-flex; align-items:center; gap:10px; border-radius:2px;
+    border:1px solid transparent; cursor:pointer; transition:all .3s ease; position:relative; overflow:hidden;
+  }
+  .btn-primary{background:var(--red); color:#fff;}
+  .btn-primary:hover{background:var(--red-hi); box-shadow:0 14px 30px -12px rgba(194,59,47,0.5);}
+  .btn-outline{border-color:rgba(247,245,242,0.28); color:var(--white);}
+  .btn-outline:hover{border-color:var(--white); background:rgba(247,245,242,0.05);}
+  .btn-line{
+    display:inline-flex; align-items:center; gap:10px; font-size:12.5px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;
+    padding-bottom:6px; border-bottom:1px solid rgba(247,245,242,0.3); transition:border-color .25s ease, gap .25s ease, color .25s ease;
+  }
+  .btn-line:hover{border-color:var(--red-hi); color:var(--red-hi); gap:14px;}
+
+  /* NAV */
+  header{position:fixed; top:0; left:0; right:0; z-index:100; transition:all .4s ease; border-bottom:1px solid transparent;}
+  header.scrolled{background:rgba(14,13,12,0.88); backdrop-filter:blur(14px); border-bottom-color:var(--grey-line);}
+  nav{display:flex; align-items:center; justify-content:space-between; padding:22px 32px; max-width:1220px; margin:0 auto;}
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand .mark{width:38px; height:38px; border-radius:50%; border:1.5px solid var(--red); display:flex; align-items:center; justify-content:center;}
+  .brand .mark svg{width:20px; height:20px;}
+  .brand .name{font-family:'Cormorant Garamond'; font-weight:600; font-size:15.5px; letter-spacing:0.06em; text-transform:uppercase; line-height:1.2;}
+  .brand .name small{display:block; font-family:'IBM Plex Mono'; font-size:9px; letter-spacing:0.14em; color:var(--grey); font-weight:400; margin-top:2px;}
+  .navlinks{display:flex; gap:38px; font-size:12.5px; font-weight:500; letter-spacing:0.04em; text-transform:uppercase;}
+  .navlinks a{color:var(--grey-lt); position:relative; padding-bottom:4px;}
+  .navlinks a::after{content:""; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--red-hi); transition:width .3s ease;}
+  .navlinks a:hover{color:var(--white);}
+  .navlinks a:hover::after{width:100%;}
+
+  /* HERO */
+  .hero{position:relative; min-height:100vh; display:flex; align-items:center; padding-top:110px; overflow:hidden;}
+  .hero-bg{
+    position:absolute; inset:0; z-index:0;
+    background:
+      radial-gradient(ellipse 900px 600px at 80% 20%, rgba(155,43,35,0.16), transparent 60%),
+      linear-gradient(160deg, var(--black) 0%, var(--charcoal) 100%);
+  }
+  .hero-bg::after{
+    content:""; position:absolute; inset:0;
+    background-image:linear-gradient(rgba(247,245,242,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(247,245,242,0.02) 1px, transparent 1px);
+    background-size:80px 80px;
+    mask-image:radial-gradient(ellipse at 70% 30%, black 15%, transparent 65%);
+  }
+  .hero-num-bg{
+    position:absolute; top:-2%; right:-4%; font-family:'Cormorant Garamond'; font-weight:600; font-size:min(46vw,560px);
+    color:transparent; -webkit-text-stroke:1px rgba(247,245,242,0.045); line-height:1; z-index:0; pointer-events:none; user-select:none;
+  }
+  .hero-content{position:relative; z-index:2; max-width:760px;}
+  .hero h1{font-size:clamp(40px, 6vw, 78px); margin-top:22px;}
+  .hero h1 em{font-style:italic; color:var(--red-hi);}
+  .hero p.sub{margin-top:26px; max-width:540px; color:var(--grey-lt); font-size:17px; font-weight:300; line-height:1.8;}
+  .hero-actions{display:flex; gap:18px; margin-top:42px; flex-wrap:wrap;}
+  .hero-meta{display:flex; gap:0; margin-top:70px; border-top:1px solid var(--grey-line); padding-top:26px; max-width:640px;}
+  .hero-meta div{flex:1; padding-right:20px;}
+  .hero-meta .num{font-family:'Cormorant Garamond'; font-weight:600; font-size:30px; color:var(--red-hi);}
+  .hero-meta .lbl{font-size:10.5px; color:var(--grey); text-transform:uppercase; letter-spacing:0.1em; margin-top:6px; font-family:'IBM Plex Mono';}
+
+  /* MARQUEE SECTORS */
+  .marquee-wrap{position:relative; border-top:1px solid var(--grey-line); border-bottom:1px solid var(--grey-line); background:var(--charcoal); overflow:hidden; padding:22px 0;}
+  .marquee-track{display:flex; width:max-content; animation:marquee 34s linear infinite;}
+  .marquee-track .grp{display:flex; gap:0;}
+  .marquee-track span{
+    font-family:'IBM Plex Mono'; font-weight:500; font-size:12.5px; color:var(--grey); text-transform:uppercase; letter-spacing:0.12em; white-space:nowrap;
+    padding:0 28px; border-right:1px solid var(--grey-line);
+  }
+  @keyframes marquee{0%{transform:translateX(0);} 100%{transform:translateX(-50%);}}
+
+  section{padding:140px 0; position:relative;}
+  .section-head{max-width:680px; margin-bottom:70px;}
+  .section-head h2{font-size:clamp(30px,3.8vw,46px); margin-top:16px;}
+  .section-head p{color:var(--grey-lt); margin-top:20px; font-size:15.5px; font-weight:300; line-height:1.8; max-width:560px;}
+  .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+  .section-head.center .eyebrow{justify-content:center;}
+  .section-head.center .eyebrow::before{display:none;}
+  .section-head.center p{margin-left:auto; margin-right:auto;}
+
+  /* TENTANG */
+  .about-wrap{display:grid; grid-template-columns:0.55fr 1fr; gap:80px; align-items:start;}
+  .about-figure{position:relative; aspect-ratio:3/4; border:1px solid var(--grey-line); background:var(--panel); overflow:hidden; display:flex; align-items:center; justify-content:center;}
+  .about-figure .ring-big{width:70%; aspect-ratio:1; border-radius:50%; border:1.5px solid var(--red); display:flex; align-items:center; justify-content:center; position:relative;}
+  .about-figure .ring-big::before{content:""; position:absolute; inset:14px; border-radius:50%; border:1px solid rgba(247,245,242,0.12);}
+  .about-figure svg{width:34%;}
+  .about-figure .year-badge{
+    position:absolute; bottom:24px; left:24px; background:var(--red); color:#fff; padding:12px 18px;
+    font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .about-body p{color:var(--grey-lt); font-size:15.5px; font-weight:300; line-height:1.9; margin-bottom:20px;}
+  .about-body p:first-child{font-size:19px; color:var(--white); font-family:'Cormorant Garamond'; font-weight:500; line-height:1.6;}
+  .timeline{margin-top:44px; display:flex; flex-direction:column; gap:0;}
+  .tl-item{display:grid; grid-template-columns:90px 1fr; gap:24px; padding:24px 0; border-top:1px solid var(--grey-line);}
+  .tl-item:last-child{border-bottom:1px solid var(--grey-line);}
+  .tl-year{font-family:'Cormorant Garamond'; font-weight:600; font-size:22px; color:var(--red-hi);}
+  .tl-body h4{font-size:14.5px; font-weight:600; text-transform:uppercase; letter-spacing:0.03em;}
+  .tl-body p{color:var(--grey); font-size:13.5px; margin-top:6px; font-weight:300;}
+
+  /* VISI MISI */
+  .vm-section{background:var(--charcoal);}
+  .vm-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--grey-line); border:1px solid var(--grey-line);}
+  .vm-card{background:var(--black); padding:52px 46px;}
+  .vm-card .eyebrow{margin-bottom:20px;}
+  .vm-card h3{font-size:26px; margin-bottom:18px;}
+  .vm-card p{color:var(--grey-lt); font-size:15px; font-weight:300; line-height:1.85;}
+  .vm-card ul{margin-top:8px; list-style:none;}
+  .vm-card li{display:flex; gap:14px; padding:14px 0; border-top:1px solid var(--grey-line); font-size:14px; color:var(--grey-lt); font-weight:300;}
+  .vm-card li:first-of-type{border-top:none;}
+  .vm-card li .n{font-family:'IBM Plex Mono'; color:var(--red-hi); font-size:12px; min-width:20px;}
+
+  /* UNIT USAHA */
+  .grid-units{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--grey-line); border:1px solid var(--grey-line);}
+  .unit-card{
+    background:var(--charcoal); padding:38px 30px; position:relative; overflow:hidden; transition:background .35s ease;
+    min-height:230px; display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .unit-card::before{
+    content:""; position:absolute; inset:0; opacity:0; transition:opacity .4s ease;
+    background:linear-gradient(160deg, rgba(155,43,35,0.16), transparent 70%);
+  }
+  .unit-card:hover::before{opacity:1;}
+  .unit-card:hover{background:var(--panel);}
+  .unit-idx{font-family:'IBM Plex Mono'; font-size:11px; color:var(--red-hi); letter-spacing:0.06em; position:relative; z-index:1;}
+  .unit-icon{width:38px; height:38px; margin-top:16px; position:relative; z-index:1;}
+  .unit-icon svg{width:100%; height:100%; stroke:var(--grey-lt); transition:stroke .3s ease;}
+  .unit-card:hover .unit-icon svg{stroke:var(--red-hi);}
+  .unit-card h3{font-family:'Inter'; font-weight:700; font-size:15.5px; text-transform:uppercase; letter-spacing:0.01em; margin-top:20px; position:relative; z-index:1;}
+  .unit-card p{color:var(--grey); font-size:12.5px; margin-top:8px; font-weight:300; line-height:1.6; position:relative; z-index:1;}
+
+  /* KEUNGGULAN */
+  .adv-section{background:var(--charcoal);}
+  .adv-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:40px;}
+  .adv-item{text-align:left;}
+  .adv-num{font-family:'Cormorant Garamond'; font-weight:600; font-size:44px; color:transparent; -webkit-text-stroke:1px var(--red-hi); margin-bottom:18px;}
+  .adv-item h3{font-size:16.5px; font-weight:700; text-transform:uppercase; letter-spacing:0.02em; font-family:'Inter';}
+  .adv-item p{color:var(--grey); font-size:13.5px; margin-top:10px; font-weight:300; line-height:1.7;}
+
+  /* STATS BAND */
+  .stats-band{background:var(--red); padding:70px 0;}
+  .stats-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px; text-align:center;}
+  .stat-num{font-family:'Cormorant Garamond'; font-weight:600; font-size:46px; color:#fff;}
+  .stat-lbl{font-family:'IBM Plex Mono'; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.75); margin-top:10px;}
+
+  /* MITRA / CTA */
+  .cta-section{text-align:center;}
+  .cta-section h2{font-size:clamp(32px,4.6vw,54px); max-width:760px; margin:18px auto 0;}
+  .cta-section p{color:var(--grey-lt); font-weight:300; max-width:480px; margin:24px auto 40px; font-size:15.5px;}
+  .cta-actions{display:flex; gap:18px; justify-content:center; flex-wrap:wrap;}
+
+  /* FOOTER */
+  footer{padding:70px 0 32px; background:var(--charcoal); border-top:1px solid var(--grey-line);}
+  .foot-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:44px; padding-bottom:44px;}
+  .foot-brand{display:flex; align-items:center; gap:12px; margin-bottom:18px;}
+  .foot-brand .mark{width:34px; height:34px; border-radius:50%; border:1.5px solid var(--red); display:flex; align-items:center; justify-content:center;}
+  .foot-brand .mark svg{width:18px; height:18px;}
+  .foot-brand .name{font-family:'Cormorant Garamond'; font-weight:600; font-size:14px; text-transform:uppercase; letter-spacing:0.05em;}
+  footer p{color:var(--grey); font-size:13px; max-width:280px; font-weight:300; line-height:1.75;}
+  .foot-col h4{font-size:11px; text-transform:uppercase; letter-spacing:0.12em; color:var(--grey); margin-bottom:18px; font-family:'IBM Plex Mono'; font-weight:500;}
+  .foot-col a{display:block; font-size:13.5px; margin-bottom:12px; color:var(--grey-lt); font-weight:400;}
+  .foot-col a:hover{color:var(--red-hi);}
+  .foot-bottom{display:flex; justify-content:space-between; padding-top:28px; border-top:1px solid var(--grey-line); font-size:12px; color:var(--grey); flex-wrap:wrap; gap:10px;}
+
+  .annot{
+    position:fixed; bottom:20px; right:20px; z-index:99;
+    background:rgba(20,19,17,0.85); backdrop-filter:blur(12px); border:1px solid var(--grey-line);
+    padding:12px 16px; font-family:'IBM Plex Mono'; font-size:10.5px; color:var(--grey);
+    max-width:250px; line-height:1.6; border-radius:2px;
+  }
+  .annot b{color:var(--red-hi);}
+
+  @media(max-width:980px){
+    .navlinks{display:none;}
+    .about-wrap{grid-template-columns:1fr;}
+    .vm-grid{grid-template-columns:1fr;}
+    .grid-units{grid-template-columns:repeat(2,1fr);}
+    .adv-grid{grid-template-columns:repeat(2,1fr); row-gap:40px;}
+    .stats-grid{grid-template-columns:repeat(2,1fr); row-gap:30px;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+    .hero-num-bg{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav>
+    <a href="#" class="brand">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#C23B2F" stroke-width="1.4"><path d="M12 3c2 3 4 5 4 8a4 4 0 01-8 0c0-3 2-5 4-8z"/><path d="M6 13c1.5 1 3 2 6 2s4.5-1 6-2"/></svg></span>
+      <span class="name">Wanciruso Group<small>PT WGI · Est. 2007</small></span>
+    </a>
+    <div class="navlinks">
+      <a href="#tentang">Tentang</a>
+      <a href="#visimisi">Visi &amp; Misi</a>
+      <a href="#unit">Unit Usaha</a>
+      <a href="#keunggulan">Keunggulan</a>
+      <a href="#kontak">Kontak</a>
+    </div>
+    <a href="#kontak" class="btn btn-outline" style="padding:11px 22px; font-size:11.5px;">Hubungi Kami</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-num-bg">01</div>
+  <div class="wrap">
+    <div class="hero-content reveal">
+      <p class="eyebrow">Perusahaan Holding Nasional</p>
+      <h1>Satu Grup,<br>Banyak <em>Sektor</em>,<br>Satu Komitmen.</h1>
+      <p class="sub">PT Wanciruso Group Indonesia menaungi unit usaha di sektor perdagangan, jasa alat berat &amp; transportasi, manufaktur, konstruksi &amp; real estate, percetakan, hingga agribisnis — dibangun di atas tata kelola perusahaan yang baik dan semangat kolaborasi.</p>
+      <div class="hero-actions">
+        <a href="#unit" class="btn btn-primary">Jelajahi Unit Usaha</a>
+        <a href="#tentang" class="btn btn-outline">Tentang Kami</a>
+      </div>
+      <div class="hero-meta">
+        <div><div class="num">2007</div><div class="lbl">Awal Berdiri</div></div>
+        <div><div class="num">8</div><div class="lbl">Sektor Usaha</div></div>
+        <div><div class="num">ISPM#15</div><div class="lbl">Standar Internasional</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="grp">
+      <span>Perdagangan &amp; Ekspor-Impor</span><span>Alat Berat</span><span>Transportasi</span><span>Otomotif</span><span>Manufaktur</span><span>Konstruksi &amp; Real Estate</span><span>Percetakan</span><span>Agribisnis</span>
+    </div>
+    <div class="grp">
+      <span>Perdagangan &amp; Ekspor-Impor</span><span>Alat Berat</span><span>Transportasi</span><span>Otomotif</span><span>Manufaktur</span><span>Konstruksi &amp; Real Estate</span><span>Percetakan</span><span>Agribisnis</span>
+    </div>
+  </div>
+</div>
+
+<section id="tentang">
+  <div class="wrap about-wrap">
+    <div class="reveal">
+      <div class="about-figure">
+        <div class="ring-big">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C23B2F" stroke-width="1.2"><path d="M12 3c2 3 4 5 4 8a4 4 0 01-8 0c0-3 2-5 4-8z"/><path d="M6 13c1.5 1 3 2 6 2s4.5-1 6-2"/></svg>
+        </div>
+        <div class="year-badge">Sejak 2007</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">Tentang Kami</p>
+      <h2 style="margin-top:16px; font-size:clamp(28px,3.6vw,40px);">Dari Usaha Spesialis,<br>Menjadi Grup Holding Nasional</h2>
+      <div class="about-body" style="margin-top:28px;">
+        <p>Perjalanan kami dimulai dari satu keahlian — kini berkembang menjadi grup usaha yang mendukung berbagai sektor strategis di Indonesia.</p>
+        <p>Berawal dari CV. Wanciruso, perusahaan yang sejak 2007 dipercaya dalam produksi kemasan kayu industri (palet, crates, boxes, dunage) dengan standar internasional ISPM#15, serta jasa heat treatment yang telah teruji kelayakannya oleh Badan Karantina Pertanian (BARANTAN) — kami tumbuh menjadi PT Wanciruso Group Indonesia, perusahaan holding yang menaungi unit usaha lintas sektor.</p>
+        <p>Dengan didukung sumber daya manusia yang profesional, tata kelola perusahaan yang baik, serta semangat inovasi dan kolaborasi, PT WGI berkomitmen memberikan nilai tambah bagi pelanggan, mitra usaha, dan masyarakat melalui pengembangan bisnis yang berkelanjutan.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">2007</div>
+          <div class="tl-body"><h4>CV. Wanciruso Didirikan</h4><p>Spesialis kemasan kayu industri &amp; jasa heat treatment bersertifikasi ISPM#15.</p></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Kini</div>
+          <div class="tl-body"><h4>Transformasi Menjadi PT WGI</h4><p>Berkembang menjadi perusahaan holding dengan unit usaha di 8 sektor strategis.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="visimisi" class="vm-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Arah Perusahaan</p>
+      <h2>Visi &amp; Misi</h2>
+    </div>
+    <div class="vm-grid reveal">
+      <div class="vm-card">
+        <p class="eyebrow">Visi</p>
+        <h3>Menjadi Holding Nasional Terkemuka</h3>
+        <p>Menjadi perusahaan holding nasional yang mampu memberikan nilai tambah bagi pelanggan, mitra usaha, dan masyarakat melalui pengembangan bisnis yang berkelanjutan di berbagai sektor strategis.</p>
+      </div>
+      <div class="vm-card">
+        <p class="eyebrow">Misi</p>
+        <ul>
+          <li><span class="n">01</span> Mengembangkan unit usaha lintas sektor secara profesional &amp; berkelanjutan</li>
+          <li><span class="n">02</span> Menerapkan tata kelola perusahaan yang baik (Good Corporate Governance)</li>
+          <li><span class="n">03</span> Membangun sumber daya manusia yang kompeten &amp; profesional</li>
+          <li><span class="n">04</span> Mendorong inovasi &amp; kolaborasi di setiap lini bisnis</li>
+          <li><span class="n">05</span> Memberikan nilai tambah nyata bagi mitra dan masyarakat</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="unit">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Unit Usaha</p>
+      <h2>Delapan Pilar Bisnis Kami</h2>
+      <p>Beragam sektor, satu standar profesionalisme dan komitmen kualitas yang sama di setiap unit usaha PT WGI.</p>
+    </div>
+    <div class="grid-units reveal">
+      <div class="unit-card">
+        <div class="unit-idx">01</div>
+        <div class="unit-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round"><path d="M3 9l9-6 9 6-9 6-9-6z"/><path d="M3 9v6l9 6 9-6V9"/></svg></div>
+        <h3>Perdagangan &amp; Ekspor-Impor</h3>
+        <p>Perdagangan umum serta kegiatan ekspor dan impor lintas komoditas.</p>
+      </div>
+      <div class="unit-card">
+        <div class="unit-idx">02</div>
+        <div class="unit-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round"><rect x="3" y="10" width="13" height="7" rx="1"/><path d="M16 12h3l2 3v2h-5z"/><circle cx="7.5" cy="19" r="1.6"/><circle cx="17.5" cy="19" r="1.6"/></svg></div>
+        <h3>Alat Berat</h3>
+        <p>Jasa penyewaan &amp; perawatan (service) alat berat untuk kebutuhan industri.</p>
+      </div>
+      <div class="unit-card">
+        <div class="unit-idx">03</div>
+        <div class="unit-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round"><path d="M4 16V7a1 1 0 011-1h9v10"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7.5" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg></div>
+        <h3>Transportasi &amp; Angkutan</h3>
+        <p>Jasa sewa angkutan dan transportasi untuk mendukung distribusi &amp; logistik.</p>
+      </div>
+      <div class="unit-card">
+        <div class="unit-idx">04</div>
+        <div class="unit-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round"><path d="M5 17h14M6 17V9l2-4h8l2 4v8"/><path d="M9 13h.01M15 13h.01"/></svg></div>
+        <h3>Otomotif</h3>
+        <p>Usaha pencucian dan salon mobil dengan layanan perawatan berkualitas.</p>
+      </div>
+      <div class="unit-card">
+        <div class="unit-idx">05</div>
+        <div class="unit-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="1"/><path d="M4 10h16M10 4v16"/></svg></div>
+        <h3>Manufaktur</h3>
+        <p>Termasuk produksi kemasan kayu industri bersertifikasi ISPM#15 sejak 2007.</p>
+      </div>
+      <div class="unit-card">
+        <div class="unit-idx">06</div>
+        <div class="unit-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/></svg></div>
+        <h3>Konstruksi &amp; Real Estate</h3>
+        <p>Kegiatan konstruksi serta pengembangan properti &amp; real estate.</p>
+      </div>
+      <div class="unit-card">
+        <div class="unit-idx">07</div>
+        <div class="unit-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round"><rect x="5" y="8" width="14" height="7" rx="1"/><path d="M7 8V4h10v4M7 19h10v-4H7v4z"/></svg></div>
+        <h3>Percetakan</h3>
+        <p>Kegiatan percetakan untuk kebutuhan komersial &amp; industri.</p>
+      </div>
+      <div class="unit-card">
+        <div class="unit-idx">08</div>
+        <div class="unit-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round"><path d="M12 3c2 3 4 5 4 8a4 4 0 01-8 0c0-3 2-5 4-8z"/><path d="M4 21c2-4 6-4 8-4s6 0 8 4"/></svg></div>
+        <h3>Agribisnis</h3>
+        <p>Kegiatan pertanian, peternakan, dan perikanan sebagai sektor pendukung.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="keunggulan" class="adv-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Keunggulan</p>
+      <h2>Mengapa PT WGI</h2>
+    </div>
+    <div class="adv-grid reveal">
+      <div class="adv-item">
+        <div class="adv-num">01</div>
+        <h3>Rekam Jejak Terpercaya</h3>
+        <p>Berakar dari usaha bersertifikasi internasional sejak 2007, diverifikasi oleh BARANTAN.</p>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">02</div>
+        <h3>Diversifikasi Sektor</h3>
+        <p>Delapan lini usaha strategis yang saling melengkapi dalam satu grup holding.</p>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">03</div>
+        <h3>Tata Kelola Profesional</h3>
+        <p>Didukung SDM kompeten &amp; prinsip Good Corporate Governance di setiap unit usaha.</p>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">04</div>
+        <h3>Berorientasi Kolaborasi</h3>
+        <p>Terbuka bermitra lintas sektor untuk pertumbuhan bisnis yang berkelanjutan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-band">
+  <div class="wrap stats-grid reveal">
+    <div><div class="stat-num">2007</div><div class="stat-lbl">Tahun Berdiri</div></div>
+    <div><div class="stat-num">8</div><div class="stat-lbl">Sektor Usaha</div></div>
+    <div><div class="stat-num">56°C</div><div class="stat-lbl">Standar Heat Treatment</div></div>
+    <div><div class="stat-num">ISPM#15</div><div class="stat-lbl">Sertifikasi Internasional</div></div>
+  </div>
+</div>
+
+<section id="kontak" class="cta-section">
+  <div class="wrap reveal">
+    <p class="eyebrow center">Bermitra Dengan Kami</p>
+    <h2>Mari Kembangkan Bisnis Bersama PT WGI</h2>
+    <p>Untuk kerja sama bisnis, kemitraan, maupun informasi lebih lanjut mengenai unit usaha kami, silakan hubungi tim kami.</p>
+    <div class="cta-actions">
+      <a href="#" class="btn btn-primary">Hubungi Kami</a>
+      <a href="#" class="btn btn-outline">Unduh Company Profile</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="#C23B2F" stroke-width="1.4"><path d="M12 3c2 3 4 5 4 8a4 4 0 01-8 0c0-3 2-5 4-8z"/><path d="M6 13c1.5 1 3 2 6 2s4.5-1 6-2"/></svg></span>
+          <span class="name">Wanciruso Group Indonesia</span>
+        </div>
+        <p>Perusahaan holding nasional yang menaungi unit usaha lintas sektor, berakar dari rekam jejak profesional sejak 2007.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Navigasi</h4>
+        <a href="#tentang">Tentang</a><a href="#visimisi">Visi &amp; Misi</a><a href="#unit">Unit Usaha</a><a href="#keunggulan">Keunggulan</a>
+      </div>
+      <div class="foot-col">
+        <h4>Unit Usaha</h4>
+        <a href="#unit">Perdagangan &amp; Ekspor-Impor</a><a href="#unit">Alat Berat &amp; Transportasi</a><a href="#unit">Manufaktur &amp; Konstruksi</a><a href="#unit">Agribisnis</a>
+      </div>
+      <div class="foot-col">
+        <h4>Kontak</h4>
+        <a href="#">Email Perusahaan</a><a href="#">Telepon Kantor</a><a href="#">LinkedIn</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 PT Wanciruso Group Indonesia. Seluruh hak cipta dilindungi.</span>
+      <span>Est. 2007 sebagai CV. Wanciruso</span>
+    </div>
+  </div>
+</footer>
+
+<div class="annot"><b>Mockup Company Profile —</b> gaya korporat holding, palet merah-hitam-putih-abu sesuai logo. Konten placeholder, siap disesuaikan data resmi.</div>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 10));
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
