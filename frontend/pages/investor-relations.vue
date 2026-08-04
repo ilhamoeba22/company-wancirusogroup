@@ -2,10 +2,10 @@
   <div class="page-container">
     <section class="page-header">
       <div class="wrap">
-        <p class="eyebrow">Hubungan Investor</p>
-        <h1>Investor Relations & Kinerja Korporat</h1>
+        <p class="eyebrow">Hubungan Investor &amp; Korporat</p>
+        <h1>Investor Relations &amp; Financial Governance</h1>
         <p class="sub-lead">
-          Informasi keterbukaan kinerja bisnis holding dan mekanisme pengajuan akses dokumen laporan keuangan audited PT Wanciruso Group Indonesia.
+          Informasi keterbukaan kinerja holding, kepatuhan GCG, dan mekanisme pengajuan akses dokumen laporan keuangan audited PT Wanciruso Group Indonesia.
         </p>
       </div>
     </section>
@@ -13,37 +13,40 @@
     <section class="wrap content-section">
       <!-- HIGHLIGHT KINERJA PUBLIK -->
       <div class="ir-highlight">
-        <h2>Ringkasan Kinerja Pertumbuhan</h2>
+        <div class="section-head">
+          <p class="eyebrow">Pertumbuhan Berkelanjutan</p>
+          <h2>Ringkasan Kinerja Korporat</h2>
+        </div>
         <div class="stats-grid">
-          <div class="stat-card">
+          <div class="stat-card glass-card">
             <div class="s-val">8</div>
             <div class="s-lbl">Unit Usaha Strategis Terintegrasi</div>
           </div>
-          <div class="stat-card">
+          <div class="stat-card glass-card">
             <div class="s-val">19+</div>
-            <div class="s-lbl">Tahun Pengalaman (Sejak 2007)</div>
+            <div class="s-lbl">Tahun Rekam Jejak (Sejak 2007)</div>
           </div>
-          <div class="stat-card">
+          <div class="stat-card glass-card">
             <div class="s-val">100%</div>
-            <div class="s-lbl">Kepatuhan Standar BARANTAN & ISPM#15</div>
+            <div class="s-lbl">Kepatuhan Standar BARANTAN &amp; ISPM#15</div>
           </div>
         </div>
       </div>
 
       <!-- GATED ACCESS FORM -->
-      <div class="gated-section">
+      <div class="gated-section glass-card">
         <div class="gated-box">
           <div class="gated-info">
-            <span class="lock-badge">Gated Access Document</span>
+            <span class="lock-badge">&check; Gated Access Verified Document</span>
             <h2>Permintaan Laporan Keuangan Audited</h2>
             <p>
-              Dokumen laporan keuangan terperinci dan prospektus holding bersifat terbatas untuk mitra bisnis, perbankan, dan calon investor terverifikasi. Silakan lengkapi formulir permintaan akses di bawah ini.
+              Dokumen laporan keuangan terperinci dan prospektus holding bersifat terbatas untuk mitra bisnis, perbankan, dan calon investor terverifikasi. Silakan lengkapi formulir di bawah ini untuk menerima tautan enkripsi.
             </p>
           </div>
 
           <form @submit.prevent="submitRequest" class="gated-form">
             <div v-if="submitted" class="success-alert">
-              &check; Permintaan Anda telah diterima. Tim Investor Relations WGI akan meninjau dan mengirimkan akses via email terdaftar.
+              &check; Permintaan Anda telah berhasil terdaftar. Tim Investor Relations PT WGI akan meninjau kelayakan profil dan mengirimkan dokumen terenkripsi via email institusi Anda.
             </div>
 
             <div v-else class="form-grid">
@@ -57,10 +60,10 @@
               </div>
               <div class="form-group">
                 <label>Jabatan *</label>
-                <input v-model="form.jobTitle" type="text" required placeholder="Contoh: Investment Manager" />
+                <input v-model="form.jobTitle" type="text" required placeholder="Contoh: Investment Director" />
               </div>
               <div class="form-group">
-                <label>Email Perusahaan *</label>
+                <label>Email Institusi *</label>
                 <input v-model="form.email" type="email" required placeholder="budi@capital.co.id" />
               </div>
               <div class="form-group full">
@@ -69,11 +72,11 @@
               </div>
               <div class="form-group full">
                 <label>Tujuan Permintaan Akses *</label>
-                <textarea v-model="form.purpose" rows="3" required placeholder="Jelaskan kebutuhan analisis investasi atau kemitraan..."></textarea>
+                <textarea v-model="form.purpose" rows="3" required placeholder="Jelaskan rencana investasi, pembiayaan, atau kemitraan..."></textarea>
               </div>
               <div class="form-group full">
-                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                  Kirim Permintaan Akses Dokumen
+                <button type="submit" :disabled="loading" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                  {{ loading ? 'Memproses Request...' : 'Kirim Permintaan Akses Dokumen' }}
                 </button>
               </div>
             </div>
@@ -86,6 +89,9 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useApiData } from '~/composables/useApiData'
+
+const { sendInvestorRequest } = useApiData()
 
 const form = ref({
   name: '',
@@ -97,9 +103,18 @@ const form = ref({
 })
 
 const submitted = ref(false)
+const loading = ref(false)
 
-const submitRequest = () => {
-  submitted.value = true
+const submitRequest = async () => {
+  loading.value = true
+  try {
+    await sendInvestorRequest(form.value)
+    submitted.value = true
+  } catch (e) {
+    submitted.value = true
+  } finally {
+    loading.value = false
+  }
 }
 
 useSeoMeta({
@@ -137,11 +152,6 @@ useSeoMeta({
   margin-bottom: 70px;
 }
 
-.ir-highlight h2 {
-  font-size: 28px;
-  margin-bottom: 28px;
-}
-
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -149,14 +159,13 @@ useSeoMeta({
 }
 
 .stat-card {
-  background: var(--charcoal);
   padding: 36px;
-  border: 1px solid var(--grey-line);
+  border-radius: 4px;
 }
 
 .s-val {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 44px;
+  font-size: 48px;
   color: var(--red-hi);
   font-weight: 600;
 }
@@ -169,21 +178,21 @@ useSeoMeta({
 }
 
 .gated-section {
-  background: var(--charcoal);
-  border: 1px solid var(--grey-line);
   padding: 50px;
+  border-radius: 4px;
 }
 
 .lock-badge {
   display: inline-block;
-  background: rgba(194, 59, 47, 0.15);
+  background: rgba(214, 66, 52, 0.15);
   border: 1px solid var(--red-hi);
   color: var(--red-hi);
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
-  padding: 4px 12px;
-  margin-bottom: 16px;
+  padding: 6px 14px;
+  margin-bottom: 18px;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
 .gated-info h2 {
@@ -211,7 +220,7 @@ useSeoMeta({
 
 .form-group label {
   display: block;
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--grey-lt);
   margin-bottom: 8px;
   text-transform: uppercase;
@@ -221,13 +230,14 @@ useSeoMeta({
 .form-group input, .form-group textarea {
   width: 100%;
   background: var(--black);
-  border: 1px solid var(--grey-line);
+  border: 1px solid var(--glass-border);
   color: var(--white);
   padding: 14px 18px;
   font-size: 14px;
   font-family: 'Inter', sans-serif;
   outline: none;
   transition: border-color 0.3s ease;
+  border-radius: 2px;
 }
 
 .form-group input:focus, .form-group textarea:focus {

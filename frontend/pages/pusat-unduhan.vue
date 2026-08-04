@@ -2,25 +2,31 @@
   <div class="page-container">
     <section class="page-header">
       <div class="wrap">
-        <p class="eyebrow">Dokumen Publik</p>
-        <h1>Pusat Unduhan Dokumentasi Korporat</h1>
+        <p class="eyebrow">Pusat Informasi &amp; PDF</p>
+        <h1>Pusat Unduhan Dokumen Resmi</h1>
         <p class="sub-lead">
-          Unduh dokumen profil perusahaan (Company Profile PDF), katalog produk per unit usaha, dan berkas presentasi resmi PT Wanciruso Group Indonesia.
+          Unduh profil perusahaan (Company Profile), brosur 8 unit usaha, serta berkas publikasi resmi PT Wanciruso Group Indonesia dalam format PDF.
         </p>
       </div>
     </section>
 
     <section class="wrap content-section">
-      <div class="download-list">
-        <div v-for="doc in downloads" :key="doc.id" class="download-item">
-          <div class="doc-icon">PDF</div>
-          <div class="doc-details">
-            <h3>{{ doc.title }}</h3>
-            <p>{{ doc.desc }}</p>
-            <span class="doc-meta">Ukuran File: {{ doc.size }} &bull; Versi: {{ doc.version }}</span>
+      <div class="download-grid">
+        <div v-for="doc in docs" :key="doc.id || doc.judul" class="download-card glass-card">
+          <div class="doc-icon">📄</div>
+          <div class="doc-info">
+            <span class="category-tag">{{ doc.kategori || 'Holding' }}</span>
+            <h2>{{ doc.judul }}</h2>
+            <p>{{ doc.deskripsi }}</p>
+            <div class="doc-meta">
+              <span>Versi {{ doc.versi || '1.0' }}</span> &bull;
+              <span>PDF Document</span>
+            </div>
           </div>
-          <div>
-            <a :href="doc.url" class="btn btn-primary" download>Unduh File PDF</a>
+          <div class="doc-action">
+            <a :href="doc.file_path || '#'" target="_blank" class="btn btn-outline" download>
+              Unduh PDF &darr;
+            </a>
           </div>
         </div>
       </div>
@@ -29,36 +35,37 @@
 </template>
 
 <script setup>
-const downloads = [
+import { ref } from 'vue'
+
+const fallbackDocs = [
   {
-    id: 1,
-    title: 'Company Profile PT Wanciruso Group Indonesia (Holding)',
-    desc: 'Dokumen lengkap profil holding, struktur 8 unit usaha, legalitas ISPM#15, dan rekam jejak perusahaan.',
-    size: '4.8 MB',
-    version: '2026.1',
-    url: '#'
+    judul: 'Company Profile PT Wanciruso Group Indonesia (2026 Edition)',
+    kategori: 'Corporate Holding',
+    deskripsi: 'Profil lengkap holding korporat, visi-misi, sejarah sejak 2007, struktur 8 unit bisnis, sertifikasi ISPM#15, dan tata kelola GCG.',
+    versi: '2026.1',
+    file_path: '/files/Company_Profile_PT_WGI.pdf'
   },
   {
-    id: 2,
-    title: 'Katalog Kemasan Kayu Industri & Heat Treatment (ISPM#15)',
-    desc: 'Spesifikasi teknis palet kayu, wooden box, crates, dan prosedur sertifikasi BARANTAN.',
-    size: '3.2 MB',
-    version: '2026.1',
-    url: '#'
+    judul: 'Brosur Spesifikasi Kemasan Kayu & Heat Treatment ISPM#15',
+    kategori: 'Manufaktur Kayu',
+    deskripsi: 'Katalog teknis kemasan kayu ekspor, spesifikasi oven Heat Treatment terverifikasi BARANTAN, serta standar palet kayu industri.',
+    versi: '1.4',
+    file_path: '/files/Brosur_ISPM15_Wanciruso.pdf'
   },
   {
-    id: 3,
-    title: 'Brosur Layanan Alat Berat & Armada Transportasi Logistik',
-    desc: 'Daftar armada sewa excavator, heavy duty truck, dan paket layanan maintenance.',
-    size: '2.9 MB',
-    version: '2026.1',
-    url: '#'
+    judul: 'Katalog Penyewaan & Perawatan Alat Berat Industri',
+    kategori: 'Alat Berat',
+    deskripsi: 'Daftar armada excavator, crane, loader, serta syarat kemitraan jasa perawatan (maintenance & service) alat berat industri.',
+    versi: '2.0',
+    file_path: '/files/Katalog_Alat_Berat_WGI.pdf'
   }
 ]
 
+const docs = ref(fallbackDocs)
+
 useSeoMeta({
   title: 'Pusat Unduhan PDF — PT Wanciruso Group Indonesia',
-  description: 'Unduh dokumen PDF Company Profile dan katalog produk 8 unit usaha PT Wanciruso Group Indonesia.'
+  description: 'Unduh dokumen resmi Company Profile, brosur unit usaha, dan katalog perizinan PT Wanciruso Group Indonesia.'
 })
 </script>
 
@@ -87,56 +94,61 @@ useSeoMeta({
   padding: 80px 0 120px;
 }
 
-.download-list {
+.download-grid {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
-.download-item {
+.download-card {
+  padding: 32px 36px;
   display: grid;
-  grid-template-columns: 80px 1fr 200px;
+  grid-template-columns: 60px 1fr 200px;
+  gap: 28px;
   align-items: center;
-  gap: 30px;
-  background: var(--charcoal);
-  padding: 32px;
-  border: 1px solid var(--grey-line);
+  border-radius: 4px;
 }
 
 .doc-icon {
-  width: 56px;
-  height: 56px;
-  background: var(--red);
-  color: #fff;
+  font-size: 38px;
+}
+
+.category-tag {
   font-family: 'IBM Plex Mono', monospace;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
+  font-size: 11px;
+  color: var(--red-hi);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-.doc-details h3 {
+.doc-info h2 {
   font-size: 20px;
-  margin-bottom: 6px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  margin-top: 4px;
+  margin-bottom: 8px;
 }
 
-.doc-details p {
+.doc-info p {
   color: var(--grey-lt);
   font-size: 14px;
   font-weight: 300;
-  margin-bottom: 8px;
 }
 
 .doc-meta {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
   color: var(--grey);
+  margin-top: 10px;
 }
 
-@media (max-width: 768px) {
-  .download-item { grid-template-columns: 1fr; }
+.doc-action {
+  text-align: right;
+}
+
+@media (max-width: 860px) {
+  .download-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .doc-action { text-align: left; }
 }
 </style>

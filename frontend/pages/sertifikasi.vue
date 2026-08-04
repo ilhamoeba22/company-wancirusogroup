@@ -2,41 +2,25 @@
   <div class="page-container">
     <section class="page-header">
       <div class="wrap">
-        <p class="eyebrow">Standar & Legalitas</p>
-        <h1>Sertifikasi & Legalitas Resmi Korporat</h1>
+        <p class="eyebrow">Legalitas &amp; Sertifikasi Internasional</p>
+        <h1>Sertifikasi Resmikan Standar Kualitas WGI</h1>
         <p class="sub-lead">
-          Kepatuhan pada regulasi dan sertifikasi standar internasional untuk memastikan kredibilitas legalitas PT Wanciruso Group Indonesia.
+          Komitmen penuh PT Wanciruso Group Indonesia dalam mematuhi regulasi internasional kemasan kayu ekspor (ISPM#15), verifikasi Badan Karantina Pertanian (BARANTAN), serta legalitas holding terpadu.
         </p>
       </div>
     </section>
 
     <section class="wrap content-section">
       <div class="cert-grid">
-        <div class="cert-card">
-          <div class="cert-badge">Internasional</div>
-          <h2>Sertifikasi ISPM#15 (Kemasan Kayu Industri)</h2>
-          <p class="issuer">Diterbitkan oleh: International Plant Protection Convention (IPPC)</p>
-          <p class="desc">
-            Sertifikat standar internasional untuk pengolahan bahan kemasan kayu (palet, wooden box, crates, dunnage) guna menjamin kebebasan dari hama tanaman dalam perdagangan ekspor global.
-          </p>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-badge">Pemerintah RI</div>
-          <h2>Verifikasi Kelayakan Fasilitas Heat Treatment</h2>
-          <p class="issuer">Diterbitkan oleh: Badan Karantina Pertanian (BARANTAN) Kementan RI</p>
-          <p class="desc">
-            Verifikasi resmi terhadap fasilitas pengeringan kayu (heat treatment oven) dengan standar suhu minimal 56°C selama 30 menit sesuai regulasi karantina Indonesia.
-          </p>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-badge">Legalitas Usaha</div>
-          <h2>Nomor Induk Berusaha (NIB) Holding</h2>
-          <p class="issuer">Diterbitkan oleh: Pemerintah Republik Indonesia (OSS RBA)</p>
-          <p class="desc">
-            Izijn usaha resmi holding PT Wanciruso Group Indonesia yang menaungi 8 Klasifikasi Baku Lapangan Usaha Indonesia (KBLI) lintas sektor.
-          </p>
+        <div v-for="cert in certs" :key="cert.slug || cert.nama" class="cert-card glass-card">
+          <div class="cert-badge">&check; {{ cert.nomor || 'TERVERIFIKASI' }}</div>
+          <h2>{{ cert.nama }}</h2>
+          <div class="issuer">Diterbitkan oleh: {{ cert.penerbit }}</div>
+          <p>{{ cert.deskripsi }}</p>
+          <div class="cert-meta">
+            <span class="meta-tag">Standar: {{ cert.standar || 'ISPM#15 / BARANTAN' }}</span>
+            <span class="meta-tag">Status: Aktif</span>
+          </div>
         </div>
       </div>
     </section>
@@ -44,9 +28,47 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+import { useApiData } from '~/composables/useApiData'
+
+const { fetchSertifikasi } = useApiData()
+
+const fallbackCerts = [
+  {
+    nama: 'Sertifikasi ISPM#15 (Kemasan Kayu Ekspor)',
+    nomor: 'ID-03-087-HT',
+    penerbit: 'Badan Karantina Pertanian (BARANTAN) / IPPC',
+    deskripsi: 'Sertifikasi internasional wajib untuk seluruh kemasan kayu ekspor (palet kayu, crates, boxes) dengan perlakuan Heat Treatment (HT) suhu inti 56°C minimal 30 menit.',
+    standar: 'IPPC ISPM#15 International Standard'
+  },
+  {
+    nama: 'Verifikasi Operasional Oven Heat Treatment',
+    nomor: 'BARANTAN-HT-VERIFIED',
+    penerbit: 'Badan Karantina Pertanian Kementan RI',
+    deskripsi: 'Fasilitas oven Heat Treatment milik CV. Wanciruso / PT WGI terdaftar resmi dan diawasi berkala oleh petugas BARANTAN untuk menjamin kebebasan dari hama OPTK.',
+    standar: 'Permentan No. 12/2009'
+  },
+  {
+    nama: 'NIB & Perizinan Berusaha Berbasis Risiko',
+    nomor: 'NIB-9120301928471',
+    penerbit: 'Kementerian Investasi / BKPM RI (OSS RBA)',
+    deskripsi: 'Perizinan legalitas induk holding PT Wanciruso Group Indonesia untuk 8 sektor usaha (Perdagangan, Alat Berat, Transportasi, Otomotif, Manufaktur, Konstruksi, Percetakan, Agribisnis).',
+    standar: 'OSS RBA Legal Holding'
+  }
+]
+
+const certs = ref(fallbackCerts)
+
+onMounted(async () => {
+  const apiCerts = await fetchSertifikasi()
+  if (apiCerts && apiCerts.length > 0) {
+    certs.value = apiCerts
+  }
+})
+
 useSeoMeta({
   title: 'Sertifikasi & Legalitas — PT Wanciruso Group Indonesia',
-  description: 'Sertifikasi ISPM#15, verifikasi BARANTAN, dan legalitas resmi PT Wanciruso Group Indonesia.'
+  description: 'Daftar sertifikasi internasional ISPM#15, BARANTAN, dan perizinan legal holding PT Wanciruso Group Indonesia.'
 })
 </script>
 
@@ -78,49 +100,67 @@ useSeoMeta({
 .cert-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+  gap: 28px;
 }
 
 .cert-card {
-  background: var(--charcoal);
-  padding: 40px;
-  border: 1px solid var(--grey-line);
-  position: relative;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .cert-badge {
+  display: inline-block;
+  background: rgba(214, 66, 52, 0.15);
+  border: 1px solid var(--red-hi);
+  color: var(--red-hi);
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
-  color: var(--red-hi);
-  border: 1px solid var(--red-hi);
-  display: inline-block;
-  padding: 3px 10px;
+  padding: 4px 12px;
   margin-bottom: 20px;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
+  width: fit-content;
 }
 
 .cert-card h2 {
   font-size: 22px;
   margin-bottom: 8px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
 }
 
 .issuer {
-  color: var(--grey);
-  font-size: 13px;
   font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  color: var(--red-hi);
   margin-bottom: 16px;
 }
 
-.desc {
-  color: var(--grey-lt);
-  font-size: 14.5px;
+.cert-card p {
+  color: var(--grey);
+  font-size: 14px;
   font-weight: 300;
   line-height: 1.7;
+  margin-bottom: 28px;
 }
 
-@media (max-width: 900px) {
+.cert-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 16px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.meta-tag {
+  font-size: 11px;
+  color: var(--grey-lt);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+@media (max-width: 980px) {
   .cert-grid { grid-template-columns: 1fr; }
 }
 </style>
