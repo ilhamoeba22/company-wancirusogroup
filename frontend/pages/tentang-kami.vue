@@ -15,13 +15,13 @@
         <div class="story-card">
           <h2>Sejarah & Transformasi</h2>
           <p>
-            PT Wanciruso Group Indonesia (WGI) tumbuh dari akar usaha <strong>CV. Wanciruso</strong> yang berdiri pada tahun 2007. CV. Wanciruso memposisikan diri sebagai produsen utama kemasan kayu industri (palet kayu, *wooden box*, *crates*, dan *dunnage*) bersertifikasi internasional <strong>ISPM#15</strong>.
+            PT Wanciruso Group Indonesia (WGI) tumbuh dari akar usaha <strong>CV. Wanciruso</strong> yang berdiri pada tahun 2007. CV. Wanciruso memposisikan diri sebagai produsen utama kemasan kayu industri (palet kayu, <em>wooden box</em>, <em>crates</em>, dan <em>dunnage</em>) bersertifikasi internasional <strong>ISPM#15</strong>.
           </p>
           <p>
-            Fasilitas *heat treatment* kami diinspeksi dan diverifikasi oleh Badan Karantina Pertanian (BARANTAN) Kementerian Pertanian Republik Indonesia, memastikan seluruh kemasan bebas dari hama perusak kayu untuk standar ekspor global.
+            Fasilitas <em>heat treatment</em> kami diinspeksi dan diverifikasi oleh Badan Karantina Pertanian (BARANTAN) Kementerian Pertanian Republik Indonesia, memastikan seluruh kemasan bebas dari hama perusak kayu untuk standar ekspor global.
           </p>
           <p>
-            Seiring pertumbuhan kepercayaan mitra dan tuntutan diversifikasi usaha, CV. Wanciruso bertransformasi menjadi **PT Wanciruso Group Indonesia** sebagai *holding company* yang menaungi 8 unit bisnis lintas sektor secara terpadu.
+            Seiring pertumbuhan kepercayaan mitra dan tuntutan diversifikasi usaha, CV. Wanciruso bertransformasi menjadi <strong>PT Wanciruso Group Indonesia</strong> sebagai <em>holding company</em> yang menaungi 8 unit bisnis lintas sektor secara terpadu.
           </p>
         </div>
 
