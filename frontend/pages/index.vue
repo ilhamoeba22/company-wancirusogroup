@@ -124,12 +124,14 @@
             :to="`/unit-usaha/${unit.slug}`"
             class="unit-card glass-card"
           >
-            <div class="unit-idx">0{{ index + 1 }}</div>
-            <div class="unit-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M3 9l9-6 9 6-9 6-9-6z"/><path d="M3 9v6l9 6 9-6V9"/></svg>
+            <div class="unit-card-img-wrap">
+              <img :src="unit.image || getUnitImage(unit.slug)" :alt="unit.nama_unit || unit.name" class="unit-card-img" />
+              <div class="unit-card-img-overlay"></div>
+              <div class="unit-idx">0{{ index + 1 }}</div>
             </div>
             <h3>{{ unit.nama_unit || unit.name }}</h3>
             <p>{{ unit.deskripsi_umum || unit.desc }}</p>
+            <span class="unit-card-link">Eksplorasi Pilar &rarr;</span>
           </NuxtLink>
         </div>
       </div>
@@ -156,7 +158,7 @@
           <div class="adv-item glass-card">
             <div class="adv-num">03</div>
             <h3>Tata Kelola Profesional</h3>
-            <p>Didukung SDM kompeten &amp; prinsip Good Corporate Governance (GCG) di setiap unit usaha.</p>
+            <p>Didukung SDM kompeten, kepatuhan regulasi tinggi, serta manajemen terpadu di setiap unit usaha.</p>
           </div>
           <div class="adv-item glass-card">
             <div class="adv-num">04</div>
@@ -210,15 +212,30 @@ import { useApiData } from '~/composables/useApiData'
 
 const { fetchUnitUsaha } = useApiData()
 
+const unitImages = {
+  'perdagangan-ekspor-impor': '/images/trade_export_import.jpg',
+  'alat-berat': '/images/heavy_equipment.jpg',
+  'transportasi-angkutan': '/images/transport_logistics.jpg',
+  'otomotif': '/images/automotive_detailing.jpg',
+  'manufaktur-ispm15': '/images/about_factory.jpg',
+  'konstruksi-real-estate': '/images/construction_realestate.jpg',
+  'percetakan': '/images/printing_press.jpg',
+  'agribisnis': '/images/agribusiness_farm.jpg'
+}
+
+const getUnitImage = (slug) => {
+  return unitImages[slug] || '/images/hero_bg.jpg'
+}
+
 const fallbackUnits = [
-  { slug: 'perdagangan-ekspor-impor', name: 'Perdagangan & Ekspor-Impor', desc: 'Perdagangan umum serta kegiatan ekspor dan impor barang komoditas industri.' },
-  { slug: 'alat-berat', name: 'Alat Berat & Perawatan', desc: 'Jasa penyewaan & perawatan (service) alat berat untuk kebutuhan proyek industri.' },
-  { slug: 'transportasi-angkutan', name: 'Transportasi & Angkutan', desc: 'Jasa sewa angkutan dan armada transportasi logistik terpadu.' },
-  { slug: 'otomotif', name: 'Otomotif & Detailing', desc: 'Usaha pencucian dan salon perawatan mobil profesional.' },
-  { slug: 'manufaktur-ispm15', name: 'Manufaktur (ISPM#15)', desc: 'Produksi kemasan kayu ekspor (palet, crates) bersertifikasi ISPM#15 sejak 2007.' },
-  { slug: 'konstruksi-real-estate', name: 'Konstruksi & Real Estate', desc: 'Kegiatan kontraktor konstruksi serta pengembangan properti komersial.' },
-  { slug: 'percetakan', name: 'Percetakan Komersial', desc: 'Kegiatan percetakan offset & digital untuk kebutuhan komersial.' },
-  { slug: 'agribisnis', name: 'Agribisnis', desc: 'Kegiatan pertanian, peternakan, dan perikanan terpadu.' }
+  { slug: 'perdagangan-ekspor-impor', name: 'Perdagangan & Ekspor-Impor', desc: 'Perdagangan umum serta kegiatan ekspor dan impor barang komoditas industri.', image: unitImages['perdagangan-ekspor-impor'] },
+  { slug: 'alat-berat', name: 'Alat Berat & Perawatan', desc: 'Jasa penyewaan & perawatan (service) alat berat untuk kebutuhan proyek industri.', image: unitImages['alat-berat'] },
+  { slug: 'transportasi-angkutan', name: 'Transportasi & Angkutan', desc: 'Jasa sewa angkutan dan armada transportasi logistik terpadu.', image: unitImages['transportasi-angkutan'] },
+  { slug: 'otomotif', name: 'Otomotif & Detailing', desc: 'Usaha pencucian dan salon perawatan mobil profesional.', image: unitImages['otomotif'] },
+  { slug: 'manufaktur-ispm15', name: 'Manufaktur (ISPM#15)', desc: 'Produksi kemasan kayu ekspor (palet, crates) bersertifikasi ISPM#15 sejak 2007.', image: unitImages['manufaktur-ispm15'] },
+  { slug: 'konstruksi-real-estate', name: 'Konstruksi & Real Estate', desc: 'Kegiatan kontraktor konstruksi serta pengembangan properti komersial.', image: unitImages['konstruksi-real-estate'] },
+  { slug: 'percetakan', name: 'Percetakan Komersial', desc: 'Kegiatan percetakan offset & digital untuk kebutuhan komersial.', image: unitImages['percetakan'] },
+  { slug: 'agribisnis', name: 'Agribisnis', desc: 'Kegiatan pertanian, peternakan, dan perikanan terpadu.', image: unitImages['agribisnis'] }
 ]
 
 const displayUnits = ref(fallbackUnits)
@@ -492,36 +509,60 @@ useSeoMeta({
 }
 
 .unit-card {
-  padding: 38px 30px;
-  min-height: 240px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+
+.unit-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--red-hi);
+}
+
+.unit-card-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  border: 1px solid var(--glass-border);
+}
+
+.unit-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.unit-card:hover .unit-card-img {
+  transform: scale(1.08);
+}
+
+.unit-card-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(14, 13, 12, 0.6) 100%);
 }
 
 .unit-idx {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(14, 13, 12, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  padding: 3px 8px;
+  border-radius: 2px;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
   color: var(--red-hi);
+  font-weight: 500;
   letter-spacing: 0.06em;
-}
-
-.unit-icon {
-  width: 38px;
-  height: 38px;
-  margin-top: 16px;
-}
-
-.unit-icon svg {
-  width: 100%;
-  height: 100%;
-  stroke: var(--grey-lt);
-  transition: stroke 0.3s ease;
-}
-
-.unit-card:hover .unit-icon svg {
-  stroke: var(--red-hi);
 }
 
 .unit-card h3 {
@@ -530,7 +571,8 @@ useSeoMeta({
   font-size: 15.5px;
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  margin-top: 20px;
+  margin-top: 2px;
+  line-height: 1.35;
 }
 
 .unit-card p {
@@ -539,6 +581,20 @@ useSeoMeta({
   margin-top: 8px;
   font-weight: 300;
   line-height: 1.6;
+  flex-grow: 1;
+}
+
+.unit-card-link {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--red-hi);
+  font-family: 'IBM Plex Mono', monospace;
+  transition: transform 0.25s ease;
+}
+
+.unit-card:hover .unit-card-link {
+  transform: translateX(4px);
 }
 
 /* KEUNGGULAN */
