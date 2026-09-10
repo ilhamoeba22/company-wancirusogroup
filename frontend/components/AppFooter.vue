@@ -12,10 +12,9 @@
         <div class="foot-col">
           <h4>Navigasi Halaman</h4>
           <NuxtLink to="/tentang-kami">Tentang Kami</NuxtLink>
-          <NuxtLink to="/tata-kelola">Tata Kelola (GCG)</NuxtLink>
           <NuxtLink to="/unit-usaha">Unit Usaha</NuxtLink>
-          <NuxtLink to="/investor-relations">Investor Relations</NuxtLink>
           <NuxtLink to="/berita">Berita & Media</NuxtLink>
+          <NuxtLink to="/sertifikasi">Sertifikasi & Legalitas</NuxtLink>
         </div>
 
         <div class="foot-col">

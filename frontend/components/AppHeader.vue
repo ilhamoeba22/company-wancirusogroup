@@ -11,7 +11,6 @@
 
       <div class="navlinks">
         <NuxtLink to="/tentang-kami">Tentang</NuxtLink>
-        <NuxtLink to="/tata-kelola">GCG</NuxtLink>
         
         <!-- Interactive Luxury Dropdown for Unit Usaha -->
         <div class="dropdown-item" @mouseenter="showDropdown = true" @mouseleave="showDropdown = false">
@@ -90,7 +89,6 @@
           </div>
         </div>
 
-        <NuxtLink to="/investor-relations">Investor</NuxtLink>
         <NuxtLink to="/berita">Berita</NuxtLink>
         <NuxtLink to="/sertifikasi">Sertifikasi</NuxtLink>
         <NuxtLink to="/pusat-unduhan">Unduhan</NuxtLink>
@@ -118,9 +116,7 @@
     <div v-if="mobileMenuOpen" class="mobile-drawer">
       <NuxtLink to="/" @click="mobileMenuOpen = false">Beranda</NuxtLink>
       <NuxtLink to="/tentang-kami" @click="mobileMenuOpen = false">Tentang Kami</NuxtLink>
-      <NuxtLink to="/tata-kelola" @click="mobileMenuOpen = false">Tata Kelola (GCG)</NuxtLink>
       <NuxtLink to="/unit-usaha" @click="mobileMenuOpen = false">8 Pilar Unit Usaha</NuxtLink>
-      <NuxtLink to="/investor-relations" @click="mobileMenuOpen = false">Investor Relations</NuxtLink>
       <NuxtLink to="/berita" @click="mobileMenuOpen = false">Berita &amp; Media</NuxtLink>
       <NuxtLink to="/sertifikasi" @click="mobileMenuOpen = false">Sertifikasi &amp; Legalitas</NuxtLink>
       <NuxtLink to="/pusat-unduhan" @click="mobileMenuOpen = false">Pusat Unduhan</NuxtLink>

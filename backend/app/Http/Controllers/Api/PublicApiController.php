@@ -7,7 +7,6 @@ use App\Models\UnitUsaha;
 use App\Models\Sertifikasi;
 use App\Models\Berita;
 use App\Models\PusatUnduhan;
-use App\Models\InvestorRequest;
 use App\Models\PengajuanKemitraan;
 use Illuminate\Http\Request;
 
@@ -98,26 +97,6 @@ class PublicApiController extends Controller
             'success' => true,
             'message' => 'Pengajuan kemitraan berhasil dikirim.',
             'data' => $submission
-        ], 201);
-    }
-
-    public function storeInvestorRequest(Request $request)
-    {
-        $validated = $request->validate([
-            'nama_pemohon' => 'required|string|max:255',
-            'perusahaan' => 'required|string|max:255',
-            'jabatan' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'telepon' => 'required|string|max:50',
-            'tujuan' => 'required|string',
-        ]);
-
-        $req = InvestorRequest::create($validated);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Permintaan akses laporan keuangan berhasil diajukan.',
-            'data' => $req
         ], 201);
     }
 }

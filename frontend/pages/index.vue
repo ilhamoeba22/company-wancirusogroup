@@ -107,22 +107,6 @@
       </div>
     </section>
 
-    <!-- GCG & BOARDROOM HIGHLIGHT SECTION -->
-    <section class="gcg-section">
-      <div class="wrap gcg-wrap">
-        <div>
-          <p class="eyebrow">Tata Kelola Terpercaya</p>
-          <h2>Good Corporate Governance (GCG)</h2>
-          <p class="gcg-lead">
-            PT WGI mengedepankan 5 pilar transparansi, akuntabilitas, responsibilitas, independensi, dan kewajaran di seluruh anak perusahaan.
-          </p>
-          <NuxtLink to="/tata-kelola" class="btn btn-outline" style="margin-top: 24px;">Lihat Prinsip GCG Holding</NuxtLink>
-        </div>
-        <div class="gcg-image-card glass-card">
-          <img src="/images/corporate_governance.jpg" alt="Boardroom WGI GCG" class="gcg-img" />
-        </div>
-      </div>
-    </section>
 
     <!-- UNIT USAHA (8 PILAR BISNIS) - DYNAMIC REST API CONSUMPTION -->
     <section id="unit">
@@ -499,39 +483,6 @@ useSeoMeta({
   font-weight: 300;
 }
 
-/* GCG SECTION */
-.gcg-section {
-  background: var(--charcoal);
-  border-top: 1px solid var(--grey-line);
-  border-bottom: 1px solid var(--grey-line);
-}
-
-.gcg-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-
-.gcg-lead {
-  color: var(--grey-lt);
-  font-size: 16px;
-  font-weight: 300;
-  line-height: 1.8;
-  margin-top: 20px;
-}
-
-.gcg-image-card {
-  height: 340px;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.gcg-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
 /* UNIT USAHA */
 .grid-units {
@@ -687,7 +638,7 @@ useSeoMeta({
 }
 
 @media (max-width: 980px) {
-  .about-wrap, .gcg-wrap { grid-template-columns: 1fr; }
+  .about-wrap { grid-template-columns: 1fr; }
   .grid-units { grid-template-columns: repeat(2, 1fr); }
   .adv-grid { grid-template-columns: repeat(2, 1fr); }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }

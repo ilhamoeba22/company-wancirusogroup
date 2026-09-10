@@ -27,7 +27,6 @@ Route::prefix('v1')->group(function () {
 
     // Form Submissions
     Route::post('/kemitraan', [PublicApiController::class, 'storeKemitraan']);
-    Route::post('/investor-request', [PublicApiController::class, 'storeInvestorRequest']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

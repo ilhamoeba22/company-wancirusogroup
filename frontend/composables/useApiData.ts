@@ -57,19 +57,11 @@ export const useApiData = () => {
     })
   }
 
-  const sendInvestorRequest = async (payload: any) => {
-    return await $fetch(`${apiBase}/investor-request`, {
-      method: 'POST',
-      body: payload
-    })
-  }
-
   return {
     fetchUnitUsaha,
     fetchUnitBySlug,
     fetchSertifikasi,
     fetchBerita,
-    sendKemitraan,
-    sendInvestorRequest
+    sendKemitraan
   }
 }
