@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\UnitUsaha;
 use App\Models\Sertifikasi;
 use App\Models\Berita;
-use App\Models\PusatUnduhan;
 use App\Models\PengajuanKemitraan;
 use Illuminate\Http\Request;
 
@@ -67,16 +66,6 @@ class PublicApiController extends Controller
         return response()->json([
             'success' => true,
             'data' => $article
-        ]);
-    }
-
-    public function getPusatUnduhan()
-    {
-        $docs = PusatUnduhan::where('status_publish', true)->get();
-
-        return response()->json([
-            'success' => true,
-            'data' => $docs
         ]);
     }
 

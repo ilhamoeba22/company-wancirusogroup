@@ -22,8 +22,6 @@ Route::prefix('v1')->group(function () {
     Route::get('/berita', [PublicApiController::class, 'getBerita']);
     Route::get('/berita/{slug}', [PublicApiController::class, 'getBeritaBySlug']);
 
-    // Pusat Unduhan (Dokumen PDF)
-    Route::get('/pusat-unduhan', [PublicApiController::class, 'getPusatUnduhan']);
 
     // Form Submissions
     Route::post('/kemitraan', [PublicApiController::class, 'storeKemitraan']);

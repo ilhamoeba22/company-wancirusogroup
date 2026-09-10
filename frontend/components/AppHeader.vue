@@ -59,7 +59,6 @@
 
         <NuxtLink to="/berita">Berita</NuxtLink>
         <NuxtLink to="/sertifikasi">Sertifikasi</NuxtLink>
-        <NuxtLink to="/pusat-unduhan">Unduhan</NuxtLink>
         <NuxtLink to="/karir">Karir</NuxtLink>
         <NuxtLink to="/kontak">Kontak</NuxtLink>
       </div>
@@ -113,7 +112,6 @@
 
       <NuxtLink to="/berita" @click="closeMobileMenu">Berita &amp; Media</NuxtLink>
       <NuxtLink to="/sertifikasi" @click="closeMobileMenu">Sertifikasi &amp; Legalitas</NuxtLink>
-      <NuxtLink to="/pusat-unduhan" @click="closeMobileMenu">Pusat Unduhan</NuxtLink>
       <NuxtLink to="/karir" @click="closeMobileMenu">Karir</NuxtLink>
       <NuxtLink to="/kontak" @click="closeMobileMenu">Kontak Kami</NuxtLink>
     </div>

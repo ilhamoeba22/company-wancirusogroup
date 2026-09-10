@@ -202,7 +202,7 @@
         <p>Untuk kerja sama bisnis, kemitraan B2B, maupun informasi lebih lanjut mengenai unit usaha kami, silakan hubungi tim kami.</p>
         <div class="cta-actions">
           <NuxtLink to="/kontak" class="btn btn-primary">Hubungi Kami</NuxtLink>
-          <NuxtLink to="/pusat-unduhan" class="btn btn-outline">Unduh Company Profile</NuxtLink>
+          <NuxtLink to="/tentang-kami" class="btn btn-outline">Profil Perusahaan &rarr;</NuxtLink>
         </div>
       </div>
     </section>

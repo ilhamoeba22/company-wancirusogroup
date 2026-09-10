@@ -33,7 +33,6 @@
         <div class="foot-col">
           <h4>Informasi & Legal</h4>
           <NuxtLink to="/sertifikasi">Sertifikasi & Legalitas</NuxtLink>
-          <NuxtLink to="/pusat-unduhan">Pusat Unduhan PDF</NuxtLink>
           <NuxtLink to="/karir">Karir & Peluang</NuxtLink>
           <NuxtLink to="/kontak">Kontak Kantor Pusat</NuxtLink>
         </div>
