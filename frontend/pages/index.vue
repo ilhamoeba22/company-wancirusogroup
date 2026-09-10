@@ -128,6 +128,9 @@
               <img :src="unit.image || getUnitImage(unit.slug)" :alt="unit.nama_unit || unit.name" class="unit-card-img" />
               <div class="unit-card-img-overlay"></div>
               <div class="unit-idx">0{{ index + 1 }}</div>
+              
+              <!-- Relevant Custom Unit Icon Badge -->
+              <div class="unit-card-badge-icon" v-html="getUnitSvg(unit.slug)"></div>
             </div>
             <h3>{{ unit.nama_unit || unit.name }}</h3>
             <p>{{ unit.deskripsi_umum || unit.desc }}</p>
@@ -225,6 +228,21 @@ const unitImages = {
 
 const getUnitImage = (slug) => {
   return unitImages[slug] || '/images/hero_bg.jpg'
+}
+
+const unitIcons = {
+  'perdagangan-ekspor-impor': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17l1.5-7h17L22 17H2z"/><path d="M4 10l1-5h14l1 5"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="16" y1="10" x2="16" y2="14"/><path d="M2 21c2 0 3-1 5-1s3 1 5 1 3-1 5-1 3 1 5 1"/></svg>`,
+  'alat-berat': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18h14a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2H8l-3-4H2v8"/><circle cx="5" cy="18" r="2.5"/><circle cx="13" cy="18" r="2.5"/><line x1="5" y1="18" x2="13" y2="18"/><path d="M14 10l5-5 3 3-2 3"/><path d="M19 5l-2-2"/></svg>`,
+  'transportasi-angkutan': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/><line x1="8" y1="18.5" x2="16" y2="18.5"/></svg>`,
+  'otomotif': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9L2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 12h14"/><path d="M9 7l1-3h3l1 3"/></svg>`,
+  'manufaktur-ispm15': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18v4H3z"/><path d="M3 15h18v4H3z"/><line x1="5" y1="9" x2="5" y2="15"/><line x1="12" y1="9" x2="12" y2="15"/><line x1="19" y1="9" x2="19" y2="15"/><line x1="8" y1="5" x2="8" y2="9"/><line x1="16" y1="5" x2="16" y2="9"/><line x1="8" y1="15" x2="8" y2="19"/><line x1="16" y1="15" x2="16" y2="19"/></svg>`,
+  'konstruksi-real-estate': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16"/><path d="M15 9h4a2 2 0 0 1 2 2v10"/><line x1="9" y1="7" x2="9.01" y2="7"/><line x1="9" y1="11" x2="9.01" y2="11"/><line x1="9" y1="15" x2="9.01" y2="15"/><line x1="17" y1="13" x2="17.01" y2="13"/><line x1="17" y1="17" x2="17.01" y2="17"/></svg>`,
+  'percetakan': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/><circle cx="18" cy="12" r="1" fill="currentColor"/></svg>`,
+  'agribisnis': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12"/><path d="M12 12C12 7 7 3 2 4c0 6 4 10 10 10z"/><path d="M12 15c4 0 9-3 10-9-6 0-10 4-10 9z"/></svg>`
+}
+
+const getUnitSvg = (slug) => {
+  return unitIcons[slug] || '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>'
 }
 
 const fallbackUnits = [
@@ -563,6 +581,40 @@ useSeoMeta({
   color: var(--red-hi);
   font-weight: 500;
   letter-spacing: 0.06em;
+}
+
+.unit-card-badge-icon {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background: rgba(14, 13, 12, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--red-hi);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.unit-card-badge-icon :deep(svg),
+.unit-card-badge-icon svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.unit-card:hover .unit-card-badge-icon {
+  background: var(--red-hi);
+  color: #ffffff;
+  border-color: var(--red-hi);
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(214, 66, 52, 0.4);
 }
 
 .unit-card h3 {
