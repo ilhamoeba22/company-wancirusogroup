@@ -4,7 +4,11 @@
       <div class="foot-grid">
         <div>
           <NuxtLink to="/" class="foot-brand" title="Kembali ke Beranda">
-            <img src="/logo_wgi.png" alt="Wanciruso Group Indonesia Logo" class="foot-logo-img" />
+            <img src="/icon_wgi.png" alt="WGI Icon" class="foot-brand-icon" />
+            <span class="foot-brand-name">
+              Wanciruso Group
+              <small>PT WGI · Est. 2007</small>
+            </span>
           </NuxtLink>
           <p>Perusahaan holding nasional yang menaungi 8 unit usaha lintas sektor, berakar dari rekam jejak profesional sejak 2007 (CV. Wanciruso) dengan sertifikasi ISPM#15 &amp; BARANTAN.</p>
         </div>
@@ -60,20 +64,40 @@ footer {
 .foot-brand {
   display: inline-flex;
   align-items: center;
-  margin-bottom: 22px;
+  gap: 14px;
+  margin-bottom: 20px;
   text-decoration: none;
 }
 
-.foot-logo-img {
-  height: clamp(72px, 6.5vw, 92px);
+.foot-brand-icon {
+  height: 52px;
   width: auto;
-  max-width: 280px;
   object-fit: contain;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.foot-brand:hover .foot-logo-img {
-  transform: scale(1.03);
+.foot-brand:hover .foot-brand-icon {
+  transform: scale(1.08);
+}
+
+.foot-brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 19px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--white);
+}
+
+.foot-brand-name small {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--grey);
+  font-weight: 400;
+  margin-top: 3px;
 }
 
 footer p {
