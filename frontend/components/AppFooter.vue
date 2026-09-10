@@ -3,10 +3,10 @@
     <div class="wrap">
       <div class="foot-grid">
         <div>
-          <div class="foot-brand">
+          <NuxtLink to="/" class="foot-brand" title="Kembali ke Beranda">
             <img src="/logo_wgi.png" alt="Wanciruso Group Indonesia Logo" class="foot-logo-img" />
-          </div>
-          <p>Perusahaan holding nasional yang menaungi 8 unit usaha lintas sektor, berakar dari rekam jejak profesional sejak 2007 (CV. Wanciruso) dengan sertifikasi ISPM#15 & BARANTAN.</p>
+          </NuxtLink>
+          <p>Perusahaan holding nasional yang menaungi 8 unit usaha lintas sektor, berakar dari rekam jejak profesional sejak 2007 (CV. Wanciruso) dengan sertifikasi ISPM#15 &amp; BARANTAN.</p>
         </div>
 
         <div class="foot-col">
@@ -58,23 +58,28 @@ footer {
 }
 
 .foot-brand {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
+  text-decoration: none;
 }
 
 .foot-logo-img {
-  height: 46px;
+  height: clamp(72px, 6.5vw, 92px);
   width: auto;
-  max-width: 240px;
+  max-width: 280px;
   object-fit: contain;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.foot-brand:hover .foot-logo-img {
+  transform: scale(1.03);
 }
 
 footer p {
   color: var(--grey);
   font-size: 13px;
-  max-width: 300px;
+  max-width: 320px;
   font-weight: 300;
   line-height: 1.75;
 }
