@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\UnitUsaha;
 use App\Models\Sertifikasi;
 use App\Models\Berita;
-use App\Models\PusatUnduhan;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -41,6 +40,24 @@ class DatabaseSeeder extends Seeder
                 'layanan_utama' => ['Sewa Excavator & Heavy Duty', 'Maintenance Service', 'Sparepart Support'],
                 'keunggulan' => 'Armada sehat, siap kerja, dan dukungan mekanik berpengalaman.',
                 'target_pasar' => 'Kontraktor infrastruktur, pertambangan, dan pabrik.',
+                'foto_utama' => '/images/heavy_equipment.jpg',
+                'galeri_foto' => [
+                    '/images/alat-berat/alat_berat_01.webp',
+                    '/images/alat-berat/alat_berat_02.webp',
+                    '/images/alat-berat/alat_berat_03.webp',
+                    '/images/alat-berat/alat_berat_04.webp',
+                    '/images/alat-berat/alat_berat_05.webp',
+                    '/images/alat-berat/alat_berat_06.webp',
+                    '/images/alat-berat/alat_berat_07.webp',
+                    '/images/alat-berat/alat_berat_08.webp',
+                    '/images/alat-berat/alat_berat_09.webp',
+                    '/images/alat-berat/alat_berat_10.webp',
+                    '/images/alat-berat/alat_berat_11.webp',
+                    '/images/alat-berat/alat_berat_12.webp',
+                    '/images/alat-berat/alat_berat_13.webp',
+                    '/images/alat-berat/alat_berat_14.webp',
+                    '/images/alat-berat/alat_berat_15.webp',
+                ],
                 'urutan_tampil' => 2,
             ],
             [
@@ -133,19 +150,6 @@ class DatabaseSeeder extends Seeder
                 'ringkasan' => 'Untuk memenuhi lonjakan permintaan kemasan kayu ekspor bersertifikat ISPM#15, PT WGI melakukan modernisasi kamar pengeringan heat treatment.',
                 'isi' => 'PT Wanciruso Group Indonesia (WGI) memperluas kapasitas oven heat treatment...',
                 'tanggal_publish' => now(),
-                'status_publish' => true,
-            ]
-        );
-
-        // Seed Pusat Unduhan
-        PusatUnduhan::updateOrCreate(
-            ['judul' => 'Company Profile PT Wanciruso Group Indonesia (Holding)'],
-            [
-                'kategori' => 'Holding',
-                'deskripsi' => 'Dokumen lengkap profil holding 8 unit usaha, legalitas ISPM#15, dan rekam jejak.',
-                'file_path' => 'documents/WGI_Company_Profile_2026.pdf',
-                'ukuran_file' => '4.8 MB',
-                'versi' => '2026.1',
                 'status_publish' => true,
             ]
         );

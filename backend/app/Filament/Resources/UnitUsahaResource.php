@@ -8,6 +8,7 @@ use Filament\Schemas\Schema;
 use Filament\Schemas\Components\TextInput;
 use Filament\Schemas\Components\Textarea;
 use Filament\Schemas\Components\Toggle;
+use Filament\Forms\Components\FileUpload;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -31,6 +32,16 @@ class UnitUsahaResource extends Resource
                 Textarea::make('deskripsi_umum'),
                 Textarea::make('keunggulan'),
                 Textarea::make('target_pasar'),
+                FileUpload::make('foto_utama')
+                    ->image()
+                    ->directory('unit-usaha/utama')
+                    ->label('Foto Utama Unit'),
+                FileUpload::make('galeri_foto')
+                    ->multiple()
+                    ->image()
+                    ->directory('unit-usaha/galeri')
+                    ->reorderable()
+                    ->label('Galeri Foto Armada & Fasilitas'),
                 TextInput::make('urutan_tampil')
                     ->numeric()
                     ->default(0),
