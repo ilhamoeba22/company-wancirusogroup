@@ -868,4 +868,80 @@ useSeoMeta({
     font-size: 16px;
   }
 }
+
+/* ==========================================================
+   LIGHT MODE ADAPTATIONS FOR GALLERY ([data-theme="light"])
+   ========================================================== */
+:global([data-theme="light"]) .gallery-section {
+  border-top-color: var(--grey-line);
+}
+
+:global([data-theme="light"]) .gallery-head-text h2 {
+  color: #0F172A;
+}
+
+:global([data-theme="light"]) .gallery-lead {
+  color: #475569;
+}
+
+:global([data-theme="light"]) .gallery-view-switcher {
+  background: #FFFFFF;
+  border-color: var(--grey-line);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+}
+
+:global([data-theme="light"]) .view-toggle-btn {
+  color: #64748B;
+}
+
+:global([data-theme="light"]) .view-toggle-btn:hover {
+  color: #0F172A;
+  background: rgba(15, 23, 42, 0.04);
+}
+
+:global([data-theme="light"]) .view-toggle-btn.active {
+  background: rgba(214, 66, 52, 0.1);
+  border-color: rgba(214, 66, 52, 0.35);
+  color: var(--red-hi);
+}
+
+:global([data-theme="light"]) .gallery-item {
+  background: #FFFFFF;
+  border-color: var(--grey-line);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+}
+
+:global([data-theme="light"]) .gallery-caption {
+  background: #FFFFFF;
+}
+
+:global([data-theme="light"]) .gallery-caption h4 {
+  color: #0F172A;
+}
+
+:global([data-theme="light"]) .gallery-zoom-badge {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: var(--grey-line);
+  color: #0F172A;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
+}
+
+/* Lightbox Modal: always cinema dark so photo colors remain pure and dramatic */
+.lightbox-content {
+  background: #141312 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.lightbox-title-bar {
+  background: #141312 !important;
+  border-top-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.lightbox-title-bar p {
+  color: #F9F8F6 !important;
+}
+
+.lightbox-counter {
+  color: #C2BFB9 !important;
+}
 </style>
