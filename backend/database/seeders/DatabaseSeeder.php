@@ -36,10 +36,10 @@ class DatabaseSeeder extends Seeder
             [
                 'nama_unit' => 'Alat Berat & Perawatan',
                 'slug' => 'alat-berat',
-                'deskripsi_umum' => 'Jasa penyewaan & perawatan (service) alat berat untuk proyek infrastruktur & industri.',
-                'layanan_utama' => ['Sewa Excavator & Heavy Duty', 'Maintenance Service', 'Sparepart Support'],
-                'keunggulan' => 'Armada sehat, siap kerja, dan dukungan mekanik berpengalaman.',
-                'target_pasar' => 'Kontraktor infrastruktur, pertambangan, dan pabrik.',
+                'deskripsi_umum' => 'Jasa penyewaan & perawatan armada forklift dan mobile crane untuk operasional industri & pergudangan.',
+                'layanan_utama' => ['Sewa Forklift & Mobile Crane', 'Maintenance Service Berkala', 'Sparepart Support'],
+                'keunggulan' => 'Armada forklift & mobile crane terawat prima, bersertifikasi K3, dan tim mekanik siaga 24/7.',
+                'target_pasar' => 'Pabrik industri, kawasan pergudangan, logistik, dan proyek konstruksi.',
                 'foto_utama' => '/images/heavy_equipment.jpg',
                 'galeri_foto' => [
                     '/images/alat-berat/alat_berat_01.webp',

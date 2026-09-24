@@ -274,17 +274,17 @@ const unitData = {
   },
   'alat-berat': {
     name: 'Alat Berat & Perawatan',
-    desc: 'Jasa penyewaan, perawatan (service), dan pengadaan armada alat berat untuk kebutuhan proyek konstruksi, infrastruktur, dan tambang.',
+    desc: 'Jasa penyewaan, perawatan (service), dan pengadaan armada alat berat forklift dan mobile crane untuk kebutuhan operasional pabrik, pergudangan, logistik, dan proyek industri.',
     services: [
-      'Sewa Excavator, Crane, Bulldozer & Wheel Loader',
+      'Sewa Forklift Diesel & Elektrik Berbagai Kapasitas Tonase',
+      'Sewa Mobile Crane & Telescopic Crane Berlisensi',
       'Kontrak Service, Perawatan Berkala & Preventive Maintenance',
-      'Penyediaan Suku Cadang (Sparepart) Original',
-      'Mobilisasi Alat Berat & Operator Bersertifikasi'
+      'Penyediaan Suku Cadang (Sparepart) Original & Operator Bersertifikasi'
     ],
-    advantage: 'Armada mesin terawat prima dengan standar keselamatan K3 tinggi, serta kesiapan tim mekanik spesialis 24/7 di lokasi proyek.',
-    targetMarket: 'Kontraktor gedung & infrastruktur, pengembang kawasan industri, pertambangan, dan instansi pemerintah.',
+    advantage: 'Armada forklift dan mobile crane terawat prima dengan sertifikasi kelaikan operasi (K3), serta kesiapan tim mekanik spesialis 24/7 di lokasi proyek.',
+    targetMarket: 'Pabrik manufaktur, kawasan industri, pergudangan logistik, kontraktor, dan pelabuhan.',
     image: '/images/heavy_equipment.jpg',
-    badge: 'Heavy Machinery Fleet & Maintenance Support',
+    badge: 'Industrial Forklift & Mobile Crane Fleet',
     gallery: [
       '/images/alat-berat/alat_berat_01.webp',
       '/images/alat-berat/alat_berat_02.webp',

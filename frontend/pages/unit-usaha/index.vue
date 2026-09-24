@@ -48,8 +48,8 @@ const units = [
   {
     slug: 'alat-berat',
     name: 'Alat Berat & Perawatan',
-    desc: 'Jasa penyewaan, perawatan (service), dan pengadaan alat berat untuk kebutuhan proyek konstruksi dan industri.',
-    services: ['Sewa Excavator & Heavy Duty', 'Maintenance Service', 'Sparepart Support'],
+    desc: 'Jasa penyewaan, perawatan (service), dan pengadaan armada forklift dan mobile crane untuk operasional industri, pergudangan, dan proyek.',
+    services: ['Sewa Forklift & Mobile Crane', 'Maintenance Service & Perawatan', 'Sparepart Support'],
     image: '/images/heavy_equipment.jpg'
   },
   {
