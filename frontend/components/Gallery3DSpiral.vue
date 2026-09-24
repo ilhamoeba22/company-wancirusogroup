@@ -1,6 +1,7 @@
 <template>
   <div 
     class="gallery-3d-wrapper"
+    :class="{ 'theme-light': isLight }"
     ref="containerRef"
     @mouseenter="onMouseEnter"
     @mouseleave="onMouseLeave"
@@ -156,6 +157,7 @@
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted, h } from 'vue'
+import { useTheme } from '~/composables/useTheme'
 
 const props = defineProps({
   items: {
@@ -166,6 +168,9 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['open-lightbox'])
+
+const { theme, initTheme } = useTheme()
+const isLight = computed(() => theme.value === 'light')
 
 const containerRef = ref(null)
 const currentIndex = ref(0)
@@ -448,10 +453,28 @@ const onMouseLeave = () => {
   isHovered.value = false
 }
 
+let themeObserver = null
+
 onMounted(() => {
   checkMobile()
   if (typeof window !== 'undefined') {
     window.addEventListener('resize', checkMobile)
+    initTheme()
+    
+    // Check initial DOM attribute
+    const initialTheme = document.documentElement.getAttribute('data-theme')
+    if (initialTheme && (initialTheme === 'light' || initialTheme === 'dark')) {
+      theme.value = initialTheme
+    }
+
+    // Watch for live theme toggle changes on <html>
+    themeObserver = new MutationObserver(() => {
+      const currentTheme = document.documentElement.getAttribute('data-theme')
+      if (currentTheme && (currentTheme === 'light' || currentTheme === 'dark')) {
+        theme.value = currentTheme
+      }
+    })
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
   }
   targetOffset.value = 0
   currentOffset.value = 0
@@ -461,6 +484,10 @@ onMounted(() => {
 onUnmounted(() => {
   stopAutoplay()
   cancelAnimationFrame(animFrame)
+  if (themeObserver) {
+    themeObserver.disconnect()
+    themeObserver = null
+  }
   if (typeof window !== 'undefined') {
     window.removeEventListener('resize', checkMobile)
   }
@@ -959,152 +986,149 @@ onUnmounted(() => {
 }
 
 /* ==========================================================
-   LIGHT MODE ADAPTATIONS ([data-theme="light"])
+   LIGHT MODE ADAPTATIONS (.theme-light)
    ========================================================== */
-:global([data-theme="light"]) .gallery-3d-wrapper {
-  background: radial-gradient(circle at 50% 35%, #FFFFFF 0%, #F8FAFC 60%, #EEF2F6 100%);
-  border-color: var(--grey-line);
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+.gallery-3d-wrapper.theme-light {
+  background: radial-gradient(circle at 50% 35%, #FFFFFF 0%, #F8FAFC 60%, #EEF2F6 100%) !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08) !important;
 }
 
-:global([data-theme="light"]) .ambient-glow {
-  background: radial-gradient(ellipse, rgba(214, 66, 52, 0.1) 0%, rgba(212, 175, 55, 0.05) 45%, transparent 75%);
+.gallery-3d-wrapper.theme-light .ambient-glow {
+  background: radial-gradient(ellipse, rgba(214, 66, 52, 0.1) 0%, rgba(212, 175, 55, 0.05) 45%, transparent 75%) !important;
 }
 
-:global([data-theme="light"]) .radial-grid-overlay {
+.gallery-3d-wrapper.theme-light .radial-grid-overlay {
   background-image: 
     linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px) !important;
 }
 
-:global([data-theme="light"]) .active-badge {
-  background: rgba(214, 66, 52, 0.08);
-  border-color: rgba(214, 66, 52, 0.25);
+.gallery-3d-wrapper.theme-light .active-badge {
+  background: rgba(214, 66, 52, 0.08) !important;
+  border-color: rgba(214, 66, 52, 0.25) !important;
 }
 
-:global([data-theme="light"]) .active-title {
-  color: #0F172A;
+.gallery-3d-wrapper.theme-light .active-title {
+  color: #0F172A !important;
 }
 
-:global([data-theme="light"]) .active-hint {
-  color: #64748B;
+.gallery-3d-wrapper.theme-light .active-hint {
+  color: #64748B !important;
 }
 
-:global([data-theme="light"]) .card-inner {
-  background: #FFFFFF;
-  border-color: #E2E8F0;
-  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04);
+.gallery-3d-wrapper.theme-light .card-inner {
+  background: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04) !important;
 }
 
-:global([data-theme="light"]) .card-3d.is-active .card-inner {
-  border-color: var(--red-hi);
-  box-shadow: 0 18px 45px rgba(214, 66, 52, 0.25), 0 0 15px rgba(214, 66, 52, 0.2);
+.gallery-3d-wrapper.theme-light .card-3d.is-active .card-inner {
+  border-color: var(--red-hi) !important;
+  box-shadow: 0 18px 45px rgba(214, 66, 52, 0.25), 0 0 15px rgba(214, 66, 52, 0.2) !important;
 }
 
-:global([data-theme="light"]) .card-image-wrap {
-  background: #E2E8F0;
+.gallery-3d-wrapper.theme-light .card-image-wrap {
+  background: #E2E8F0 !important;
 }
 
-:global([data-theme="light"]) .card-footer {
-  background: rgba(255, 255, 255, 0.98);
-  border-top-color: #E2E8F0;
+.gallery-3d-wrapper.theme-light .card-footer {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-top-color: #E2E8F0 !important;
 }
 
-:global([data-theme="light"]) .card-title {
-  color: #0F172A;
+.gallery-3d-wrapper.theme-light .card-title {
+  color: #0F172A !important;
 }
 
-:global([data-theme="light"]) .card-num {
-  background: rgba(214, 66, 52, 0.09);
-  color: var(--red-hi);
+.gallery-3d-wrapper.theme-light .card-num {
+  background: rgba(214, 66, 52, 0.09) !important;
+  color: var(--red-hi) !important;
 }
 
-:global([data-theme="light"]) .floating-panel {
-  background: rgba(255, 255, 255, 0.94);
-  border-color: #E2E8F0;
-  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12);
+.gallery-3d-wrapper.theme-light .floating-panel {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12) !important;
 }
 
-:global([data-theme="light"]) .panel-label {
-  color: #64748B;
+.gallery-3d-wrapper.theme-light .panel-label,
+.gallery-3d-wrapper.theme-light .mode-btn {
+  color: #64748B !important;
 }
 
-:global([data-theme="light"]) .mode-btn {
-  color: #64748B;
+.gallery-3d-wrapper.theme-light .mode-btn:hover {
+  color: #0F172A !important;
+  background: rgba(15, 23, 42, 0.05) !important;
 }
 
-:global([data-theme="light"]) .mode-btn:hover {
-  color: #0F172A;
-  background: rgba(15, 23, 42, 0.05);
+.gallery-3d-wrapper.theme-light .mode-btn.active {
+  color: var(--red-hi) !important;
+  background: rgba(214, 66, 52, 0.1) !important;
+  border-color: rgba(214, 66, 52, 0.35) !important;
 }
 
-:global([data-theme="light"]) .mode-btn.active {
-  color: var(--red-hi);
-  background: rgba(214, 66, 52, 0.1);
-  border-color: rgba(214, 66, 52, 0.35);
+.gallery-3d-wrapper.theme-light .panel-divider {
+  background: #E2E8F0 !important;
 }
 
-:global([data-theme="light"]) .panel-divider {
-  background: #E2E8F0;
+.gallery-3d-wrapper.theme-light .panel-nav-btn {
+  background: #F1F5F9 !important;
+  border-color: #E2E8F0 !important;
+  color: #0F172A !important;
 }
 
-:global([data-theme="light"]) .panel-nav-btn {
-  background: #F1F5F9;
-  border-color: #E2E8F0;
-  color: #0F172A;
+.gallery-3d-wrapper.theme-light .panel-nav-btn:hover:not(:disabled) {
+  background: var(--red-hi) !important;
+  border-color: var(--red-hi) !important;
+  color: #FFFFFF !important;
 }
 
-:global([data-theme="light"]) .panel-nav-btn:hover:not(:disabled) {
-  background: var(--red-hi);
-  border-color: var(--red-hi);
-  color: #FFFFFF;
+.gallery-3d-wrapper.theme-light .panel-counter {
+  color: #64748B !important;
 }
 
-:global([data-theme="light"]) .panel-counter {
-  color: #64748B;
+.gallery-3d-wrapper.theme-light .panel-counter strong {
+  color: #0F172A !important;
 }
 
-:global([data-theme="light"]) .panel-counter strong {
-  color: #0F172A;
+.gallery-3d-wrapper.theme-light .autoplay-btn {
+  background: #F1F5F9 !important;
+  border-color: #E2E8F0 !important;
+  color: #64748B !important;
 }
 
-:global([data-theme="light"]) .autoplay-btn {
-  background: #F1F5F9;
-  border-color: #E2E8F0;
-  color: #64748B;
+.gallery-3d-wrapper.theme-light .autoplay-btn.playing {
+  color: #B45309 !important;
+  border-color: rgba(180, 83, 9, 0.35) !important;
 }
 
-:global([data-theme="light"]) .autoplay-btn.playing {
-  color: #B45309;
-  border-color: rgba(180, 83, 9, 0.35);
+.gallery-3d-wrapper.theme-light .autoplay-dot {
+  background: #CBD5E1 !important;
 }
 
-:global([data-theme="light"]) .autoplay-dot {
-  background: #CBD5E1;
+.gallery-3d-wrapper.theme-light .autoplay-btn.playing .autoplay-dot {
+  background: #D97706 !important;
+  box-shadow: 0 0 8px #D97706 !important;
 }
 
-:global([data-theme="light"]) .autoplay-btn.playing .autoplay-dot {
-  background: #D97706;
-  box-shadow: 0 0 8px #D97706;
+.gallery-3d-wrapper.theme-light .side-arrow-handle {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-color: #E2E8F0 !important;
+  color: #0F172A !important;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.1) !important;
 }
 
-:global([data-theme="light"]) .side-arrow-handle {
-  background: rgba(255, 255, 255, 0.94);
-  border-color: #E2E8F0;
-  color: #0F172A;
-  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.1);
+.gallery-3d-wrapper.theme-light .side-arrow-handle:hover {
+  background: var(--red-hi) !important;
+  border-color: var(--red-hi) !important;
+  color: #FFFFFF !important;
 }
 
-:global([data-theme="light"]) .side-arrow-handle:hover {
-  background: var(--red-hi);
-  border-color: var(--red-hi);
-  color: #FFFFFF;
-}
-
-:global([data-theme="light"]) .callout-pill {
-  background: rgba(255, 255, 255, 0.92);
-  border-color: var(--red-hi);
-  color: #0F172A;
-  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.15);
+.gallery-3d-wrapper.theme-light .callout-pill {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: var(--red-hi) !important;
+  color: #0F172A !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.15) !important;
 }
 </style>

@@ -53,7 +53,7 @@
       </div>
 
       <!-- INTERACTIVE GALLERY SECTION (3D SPIRAL & GRID TOGGLE) -->
-      <div v-if="currentUnit.gallery && currentUnit.gallery.length" class="gallery-section">
+      <div v-if="currentUnit.gallery && currentUnit.gallery.length" class="gallery-section" :class="{ 'theme-light': theme === 'light' }">
         <div class="gallery-head-bar">
           <div class="gallery-head-text">
             <p class="eyebrow">Dokumentasi &amp; Portofolio</p>
@@ -179,10 +179,12 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import Gallery3DSpiral from '~/components/Gallery3DSpiral.vue'
+import { useTheme } from '~/composables/useTheme'
 
 const route = useRoute()
 const slug = route.params.slug
 
+const { theme, initTheme } = useTheme()
 const galleryViewMode = ref('3d')
 const lightboxOpen = ref(false)
 const activeImageIndex = ref(0)
@@ -227,13 +229,31 @@ const handleKeydown = (e) => {
   if (e.key === 'ArrowRight') nextImage()
 }
 
+let themeObserver = null
+
 onMounted(() => {
   if (typeof window !== 'undefined') {
     window.addEventListener('keydown', handleKeydown)
+    initTheme()
+    const initialTheme = document.documentElement.getAttribute('data-theme')
+    if (initialTheme && (initialTheme === 'light' || initialTheme === 'dark')) {
+      theme.value = initialTheme
+    }
+    themeObserver = new MutationObserver(() => {
+      const currentTheme = document.documentElement.getAttribute('data-theme')
+      if (currentTheme && (currentTheme === 'light' || currentTheme === 'dark')) {
+        theme.value = currentTheme
+      }
+    })
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] })
   }
 })
 
 onUnmounted(() => {
+  if (themeObserver) {
+    themeObserver.disconnect()
+    themeObserver = null
+  }
   if (typeof window !== 'undefined') {
     window.removeEventListener('keydown', handleKeydown)
     document.body.style.overflow = ''
@@ -870,56 +890,56 @@ useSeoMeta({
 }
 
 /* ==========================================================
-   LIGHT MODE ADAPTATIONS FOR GALLERY ([data-theme="light"])
+   LIGHT MODE ADAPTATIONS FOR GALLERY (.theme-light)
    ========================================================== */
-:global([data-theme="light"]) .gallery-section {
+.gallery-section.theme-light {
   border-top-color: var(--grey-line);
 }
 
-:global([data-theme="light"]) .gallery-head-text h2 {
+.gallery-section.theme-light .gallery-head-text h2 {
   color: #0F172A;
 }
 
-:global([data-theme="light"]) .gallery-lead {
+.gallery-section.theme-light .gallery-lead {
   color: #475569;
 }
 
-:global([data-theme="light"]) .gallery-view-switcher {
+.gallery-section.theme-light .gallery-view-switcher {
   background: #FFFFFF;
   border-color: var(--grey-line);
   box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
 }
 
-:global([data-theme="light"]) .view-toggle-btn {
+.gallery-section.theme-light .view-toggle-btn {
   color: #64748B;
 }
 
-:global([data-theme="light"]) .view-toggle-btn:hover {
+.gallery-section.theme-light .view-toggle-btn:hover {
   color: #0F172A;
   background: rgba(15, 23, 42, 0.04);
 }
 
-:global([data-theme="light"]) .view-toggle-btn.active {
+.gallery-section.theme-light .view-toggle-btn.active {
   background: rgba(214, 66, 52, 0.1);
   border-color: rgba(214, 66, 52, 0.35);
   color: var(--red-hi);
 }
 
-:global([data-theme="light"]) .gallery-item {
+.gallery-section.theme-light .gallery-item {
   background: #FFFFFF;
   border-color: var(--grey-line);
   box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
 }
 
-:global([data-theme="light"]) .gallery-caption {
+.gallery-section.theme-light .gallery-caption {
   background: #FFFFFF;
 }
 
-:global([data-theme="light"]) .gallery-caption h4 {
+.gallery-section.theme-light .gallery-caption h4 {
   color: #0F172A;
 }
 
-:global([data-theme="light"]) .gallery-zoom-badge {
+.gallery-section.theme-light .gallery-zoom-badge {
   background: rgba(255, 255, 255, 0.92);
   border-color: var(--grey-line);
   color: #0F172A;

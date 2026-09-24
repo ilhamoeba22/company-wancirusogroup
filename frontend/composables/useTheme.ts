@@ -1,7 +1,7 @@
 import { ref, onMounted } from 'vue'
 
 export const useTheme = () => {
-  const theme = ref<'dark' | 'light'>('dark')
+  const theme = useState<'dark' | 'light'>('wgi-theme-state', () => 'dark')
 
   const toggleTheme = () => {
     theme.value = theme.value === 'dark' ? 'light' : 'dark'
