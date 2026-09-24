@@ -52,17 +52,58 @@
         </div>
       </div>
 
-      <!-- INTERACTIVE GALLERY SECTION (LIGHTBOX MODAL) -->
+      <!-- INTERACTIVE GALLERY SECTION (3D SPIRAL & GRID TOGGLE) -->
       <div v-if="currentUnit.gallery && currentUnit.gallery.length" class="gallery-section">
-        <div class="gallery-head">
-          <p class="eyebrow">Dokumentasi &amp; Portofolio</p>
-          <h2>Galeri Fasilitas &amp; Armada Alat Berat</h2>
-          <p class="gallery-lead">
-            Dokumentasi autentik kesiapan armada, fasilitas workshop, dan standar pemeliharaan teknis PT Wanciruso Group Indonesia. Klik foto untuk melihat resolusi penuh.
-          </p>
+        <div class="gallery-head-bar">
+          <div class="gallery-head-text">
+            <p class="eyebrow">Dokumentasi &amp; Portofolio</p>
+            <h2>Galeri Fasilitas &amp; Armada Alat Berat</h2>
+            <p class="gallery-lead">
+              Dokumentasi autentik kesiapan armada, fasilitas workshop, dan standar pemeliharaan teknis PT Wanciruso Group Indonesia. Jelajahi dalam visual 3D interaktif atau beralih ke tampilan grid.
+            </p>
+          </div>
+
+          <!-- View Switcher -->
+          <div class="gallery-view-switcher">
+            <button 
+              class="view-toggle-btn" 
+              :class="{ active: galleryViewMode === '3d' }"
+              @click="galleryViewMode = '3d'"
+              title="Tampilan 3D Spiral Interaktif"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="toggle-icon">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 2a10 10 0 1 0 10 10 7 7 0 1 0-7-7 4 4 0 1 0 4 4" />
+              </svg>
+              <span>Visual 3D Spiral</span>
+            </button>
+            <button 
+              class="view-toggle-btn" 
+              :class="{ active: galleryViewMode === 'grid' }"
+              @click="galleryViewMode = 'grid'"
+              title="Tampilan Grid Tradisional"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="toggle-icon">
+                <rect x="3" y="3" width="7" height="7" />
+                <rect x="14" y="3" width="7" height="7" />
+                <rect x="14" y="14" width="7" height="7" />
+                <rect x="3" y="14" width="7" height="7" />
+              </svg>
+              <span>Grid Standar</span>
+            </button>
+          </div>
         </div>
 
-        <div class="gallery-grid">
+        <!-- 3D SPIRAL VIEW -->
+        <div v-if="galleryViewMode === '3d'" class="gallery-3d-container">
+          <Gallery3DSpiral 
+            :items="currentUnit.gallery" 
+            @open-lightbox="openLightbox" 
+          />
+        </div>
+
+        <!-- 2D GRID VIEW -->
+        <div v-else class="gallery-grid">
           <div 
             v-for="(item, idx) in currentUnit.gallery" 
             :key="idx" 
@@ -137,10 +178,12 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
+import Gallery3DSpiral from '~/components/Gallery3DSpiral.vue'
 
 const route = useRoute()
 const slug = route.params.slug
 
+const galleryViewMode = ref('3d')
 const lightboxOpen = ref(false)
 const activeImageIndex = ref(0)
 
@@ -238,9 +281,7 @@ const unitData = {
       { src: '/images/alat-berat/alat_berat_10.webp', title: 'Armada Siap Kerja Proyek Industri' },
       { src: '/images/alat-berat/alat_berat_11.webp', title: 'Pemeriksaan Detail Komponen & Sparepart' },
       { src: '/images/alat-berat/alat_berat_12.webp', title: 'Operasional Lapangan & Dukungan Teknis' },
-      { src: '/images/alat-berat/alat_berat_13.webp', title: 'Standar Keselamatan K3 Armada Mesin' },
-      { src: '/images/alat-berat/alat_berat_14.webp', title: 'Pengecekan Mesin & Engine Unit Berkala' },
-      { src: '/images/alat-berat/alat_berat_15.webp', title: 'Unit Siap Mobilisasi ke Lokasi Proyek' }
+      { src: '/images/alat-berat/alat_berat_13.webp', title: 'Standar Keselamatan K3 Armada Mesin' }
     ]
   },
   'transportasi-angkutan': {
@@ -489,11 +530,21 @@ useSeoMeta({
   border-top: 1px solid var(--grey-line);
 }
 
-.gallery-head {
+.gallery-head-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
   margin-bottom: 36px;
+  flex-wrap: wrap;
 }
 
-.gallery-head h2 {
+.gallery-head-text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.gallery-head-text h2 {
   font-size: clamp(26px, 3.2vw, 36px);
   margin-top: 8px;
 }
@@ -505,6 +556,54 @@ useSeoMeta({
   line-height: 1.7;
   max-width: 740px;
   margin-top: 12px;
+}
+
+.gallery-view-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--charcoal);
+  border: 1px solid var(--glass-border);
+  padding: 4px;
+  border-radius: 30px;
+}
+
+.view-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  color: var(--grey-lt);
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.view-toggle-btn:hover {
+  color: var(--white);
+}
+
+.view-toggle-btn.active {
+  background: rgba(224, 43, 32, 0.2);
+  border-color: rgba(224, 43, 32, 0.5);
+  color: var(--white);
+}
+
+.toggle-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.view-toggle-btn.active .toggle-icon {
+  color: var(--red-hi);
+}
+
+.gallery-3d-container {
+  width: 100%;
 }
 
 .gallery-grid {

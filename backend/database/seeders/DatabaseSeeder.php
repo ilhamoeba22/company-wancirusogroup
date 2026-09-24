@@ -55,8 +55,6 @@ class DatabaseSeeder extends Seeder
                     '/images/alat-berat/alat_berat_11.webp',
                     '/images/alat-berat/alat_berat_12.webp',
                     '/images/alat-berat/alat_berat_13.webp',
-                    '/images/alat-berat/alat_berat_14.webp',
-                    '/images/alat-berat/alat_berat_15.webp',
                 ],
                 'urutan_tampil' => 2,
             ],
