@@ -111,21 +111,16 @@
             @click="openLightbox(idx)"
           >
             <div class="gallery-img-wrap">
-              <img :src="item.src" :alt="item.title || currentUnit.name" loading="lazy" class="gallery-img" />
+              <img :src="getImageSrc(item)" :alt="currentUnit.name" loading="lazy" class="gallery-img" />
               <div class="gallery-overlay">
                 <span class="gallery-zoom-badge">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="zoom-icon">
                     <circle cx="11" cy="11" r="8"/>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                    <line x1="11" y1="8" x2="11" y2="14"/>
-                    <line x1="8" y1="11" x2="14" y2="11"/>
                   </svg>
                   Perbesar
                 </span>
               </div>
-            </div>
-            <div class="gallery-caption">
-              <h4>{{ item.title }}</h4>
             </div>
           </div>
         </div>
@@ -154,13 +149,10 @@
 
                 <div class="lightbox-content">
                   <img 
-                    :src="currentUnit.gallery[activeImageIndex].src" 
-                    :alt="currentUnit.gallery[activeImageIndex].title" 
+                    :src="getImageSrc(currentUnit.gallery[activeImageIndex])" 
+                    :alt="currentUnit.name" 
                     class="lightbox-main-img" 
                   />
-                  <div class="lightbox-title-bar">
-                    <p>{{ currentUnit.gallery[activeImageIndex].title }}</p>
-                  </div>
                 </div>
 
                 <button class="lightbox-arrow next" @click.stop="nextImage" aria-label="Foto Berikutnya">
@@ -260,6 +252,11 @@ onUnmounted(() => {
   }
 })
 
+const getImageSrc = (item) => {
+  if (!item) return ''
+  return typeof item === 'string' ? item : (item.src || item)
+}
+
 const unitData = {
   'perdagangan-ekspor-impor': {
     name: 'Perdagangan & Ekspor-Impor',
@@ -289,19 +286,19 @@ const unitData = {
     image: '/images/heavy_equipment.jpg',
     badge: 'Heavy Machinery Fleet & Maintenance Support',
     gallery: [
-      { src: '/images/alat-berat/alat_berat_01.webp', title: 'Excavator Heavy Duty - Armada Unit 01' },
-      { src: '/images/alat-berat/alat_berat_02.webp', title: 'Inspeksi & Pemeliharaan Komponen Utama' },
-      { src: '/images/alat-berat/alat_berat_03.webp', title: 'Fasilitas Workshop Perawatan & Service' },
-      { src: '/images/alat-berat/alat_berat_04.webp', title: 'Kesiapan Armada Operasional Proyek' },
-      { src: '/images/alat-berat/alat_berat_05.webp', title: 'Pengecekan Sistem Hidrolik & Kontrol' },
-      { src: '/images/alat-berat/alat_berat_06.webp', title: 'Armada Heavy Duty Terawat Siap Kerja' },
-      { src: '/images/alat-berat/alat_berat_07.webp', title: 'Area Workshop Mekanik Bersertifikasi' },
-      { src: '/images/alat-berat/alat_berat_08.webp', title: 'Unit Excavator Siaga Lapangan' },
-      { src: '/images/alat-berat/alat_berat_09.webp', title: 'Manajemen Preventive Maintenance Berkala' },
-      { src: '/images/alat-berat/alat_berat_10.webp', title: 'Armada Siap Kerja Proyek Industri' },
-      { src: '/images/alat-berat/alat_berat_11.webp', title: 'Pemeriksaan Detail Komponen & Sparepart' },
-      { src: '/images/alat-berat/alat_berat_12.webp', title: 'Operasional Lapangan & Dukungan Teknis' },
-      { src: '/images/alat-berat/alat_berat_13.webp', title: 'Standar Keselamatan K3 Armada Mesin' }
+      '/images/alat-berat/alat_berat_01.webp',
+      '/images/alat-berat/alat_berat_02.webp',
+      '/images/alat-berat/alat_berat_03.webp',
+      '/images/alat-berat/alat_berat_04.webp',
+      '/images/alat-berat/alat_berat_05.webp',
+      '/images/alat-berat/alat_berat_06.webp',
+      '/images/alat-berat/alat_berat_07.webp',
+      '/images/alat-berat/alat_berat_08.webp',
+      '/images/alat-berat/alat_berat_09.webp',
+      '/images/alat-berat/alat_berat_10.webp',
+      '/images/alat-berat/alat_berat_11.webp',
+      '/images/alat-berat/alat_berat_12.webp',
+      '/images/alat-berat/alat_berat_13.webp'
     ]
   },
   'transportasi-angkutan': {

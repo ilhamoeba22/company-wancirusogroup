@@ -29,22 +29,28 @@ class UnitUsahaResource extends Resource
                 TextInput::make('slug')
                     ->required()
                     ->maxLength(255),
-                Textarea::make('deskripsi_umum'),
-                Textarea::make('keunggulan'),
-                Textarea::make('target_pasar'),
+                Textarea::make('deskripsi_umum')
+                    ->nullable(),
+                Textarea::make('keunggulan')
+                    ->nullable(),
+                Textarea::make('target_pasar')
+                    ->nullable(),
                 FileUpload::make('foto_utama')
                     ->image()
                     ->directory('unit-usaha/utama')
-                    ->label('Foto Utama Unit'),
+                    ->nullable()
+                    ->label('Foto Utama Unit (Opsional)'),
                 FileUpload::make('galeri_foto')
                     ->multiple()
                     ->image()
                     ->directory('unit-usaha/galeri')
                     ->reorderable()
-                    ->label('Galeri Foto Armada & Fasilitas'),
+                    ->nullable()
+                    ->label('Galeri Foto Armada & Fasilitas (Opsional)'),
                 TextInput::make('urutan_tampil')
                     ->numeric()
-                    ->default(0),
+                    ->default(0)
+                    ->nullable(),
                 Toggle::make('status_publish')
                     ->default(true),
             ]);

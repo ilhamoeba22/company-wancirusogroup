@@ -19,9 +19,8 @@
     <div class="gallery-3d-header">
       <div class="active-badge">
         <span class="pulse-dot"></span>
-        <span class="active-tag">FOKUS UNIT #{{ formattedIndex(currentIndex + 1) }}</span>
+        <span class="active-tag">FOKUS FOTO #{{ formattedIndex(currentIndex + 1) }}</span>
       </div>
-      <h3 class="active-title">{{ currentItem?.title || 'Armada & Fasilitas Alat Berat' }}</h3>
       <p class="active-hint">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="hint-icon">
           <circle cx="11" cy="11" r="8"/>
@@ -45,8 +44,8 @@
           <div class="card-inner glass-card">
             <div class="card-image-wrap">
               <img 
-                :src="item.src" 
-                :alt="item.title" 
+                :src="getItemSrc(item)" 
+                :alt="'Armada Unit #' + (idx + 1)" 
                 class="card-img" 
                 loading="lazy" 
                 draggable="false"
@@ -62,12 +61,6 @@
                   Perbesar Resolusi Penuh
                 </span>
               </div>
-            </div>
-
-            <!-- Card Bottom Bar -->
-            <div class="card-footer">
-              <span class="card-num">#{{ formattedIndex(idx + 1) }}</span>
-              <p class="card-title">{{ item.title }}</p>
             </div>
           </div>
         </div>
@@ -215,9 +208,10 @@ const layoutModes = [
   { id: 'spiral-tight', label: 'Spiral Rapat', desc: 'Kurva silinder 3D rapat memutar', icon: SpiralTightIcon }
 ]
 
-const currentItem = computed(() => {
-  return props.items[currentIndex.value] || props.items[0]
-})
+const getItemSrc = (item) => {
+  if (!item) return ''
+  return typeof item === 'string' ? item : (item.src || item)
+}
 
 const formattedIndex = (num) => {
   return String(num).padStart(2, '0')
