@@ -112,14 +112,10 @@
                 <label>Sektor Unit Usaha Yang Dituju *</label>
                 <select v-model="form.unit_usaha_dituju" required>
                   <option value="">-- Pilih Unit Usaha --</option>
-                  <option value="Perdagangan & Ekspor-Impor">Perdagangan & Ekspor-Impor</option>
-                  <option value="Alat Berat">Alat Berat & Perawatan</option>
+                  <option value="Alat Berat & Service">Alat Berat & Service</option>
                   <option value="Transportasi & Angkutan">Transportasi & Angkutan</option>
-                  <option value="Otomotif">Otomotif & Maintenance</option>
-                  <option value="Manufaktur ISPM#15">Manufaktur Kemasan Kayu (ISPM#15)</option>
-                  <option value="Konstruksi & Real Estate">Konstruksi & Real Estate</option>
-                  <option value="Percetakan">Percetakan</option>
-                  <option value="Agribisnis">Agribisnis</option>
+                  <option value="Percetakan Komersil">Percetakan Komersil</option>
+                  <option value="Otomotif & Detailing">Otomotif & Detailing</option>
                   <option value="Holding General Inquiry">Kemitraan Holding General</option>
                 </select>
               </div>

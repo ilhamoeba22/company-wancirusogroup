@@ -51,7 +51,7 @@
             </div>
             <div class="dropdown-footer">
               <NuxtLink to="/unit-usaha" class="btn-line" @click="showDropdown = false">
-                Lihat Ringkasan 8 Pilar &rarr;
+                Lihat 4 Pilar Bisnis Utama &rarr;
               </NuxtLink>
             </div>
           </div>
@@ -87,12 +87,12 @@
       <!-- Mobile Unit Usaha Accordion -->
       <div class="mobile-accordion">
         <button type="button" class="mobile-accordion-btn" @click="mobileUnitsOpen = !mobileUnitsOpen">
-          <span>8 Pilar Unit Usaha</span>
+          <span>4 Pilar Unit Usaha</span>
           <span :class="['m-arrow', { open: mobileUnitsOpen }]">&#9662;</span>
         </button>
         <div v-show="mobileUnitsOpen" class="mobile-sub-list">
           <NuxtLink to="/unit-usaha" @click="closeMobileMenu" class="m-sub-all">
-            &bull; Semua Unit Usaha (Overview 8 Pilar) &rarr;
+            &bull; Semua Unit Usaha (Overview 4 Pilar) &rarr;
           </NuxtLink>
           <NuxtLink
             v-for="unit in unitsNav"
@@ -129,14 +129,10 @@ const showDropdown = ref(false)
 let dropdownTimer = null
 
 const unitsNav = [
-  { slug: 'perdagangan-ekspor-impor', icon: '📦', title: 'Perdagangan & Ekspor-Impor', desc: 'Ekspor komoditas & barang industri' },
-  { slug: 'alat-berat', icon: '🚜', title: 'Alat Berat & Service', desc: 'Sewa & pemeliharaan mesin berat' },
+  { slug: 'alat-berat', icon: '🚜', title: 'Alat Berat & Service', desc: 'Sewa & pemeliharaan armada industri' },
   { slug: 'transportasi-angkutan', icon: '🚚', title: 'Transportasi & Angkutan', desc: 'Armada pengangkutan logistik B2B' },
-  { slug: 'otomotif', icon: '🚘', title: 'Otomotif & Detailing', desc: 'Perawatan & pencucian profesional' },
-  { slug: 'manufaktur-ispm15', icon: '🪵', title: 'Manufaktur (ISPM#15)', desc: 'Kemasan kayu ekspor & Heat Treatment' },
-  { slug: 'konstruksi-real-estate', icon: '🏢', title: 'Konstruksi & Real Estate', desc: 'Kontraktor & pengembang properti' },
-  { slug: 'percetakan', icon: '🖨️', title: 'Percetakan Komersial', desc: 'Cetak offset & digital korporat' },
-  { slug: 'agribisnis', icon: '🌾', title: 'Agribisnis Terpadu', desc: 'Pertanian & peternakan modern' }
+  { slug: 'percetakan', icon: '🖨️', title: 'Percetakan Komersil', desc: 'Cetak offset & digital korporat' },
+  { slug: 'otomotif', icon: '🚘', title: 'Otomotif & Detailing', desc: 'Perawatan & pencucian profesional' }
 ]
 
 const { theme, toggleTheme, initTheme } = useTheme()

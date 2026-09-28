@@ -5,7 +5,7 @@
         <p class="eyebrow">Profil Korporat</p>
         <h1>Tentang PT Wanciruso Group Indonesia</h1>
         <p class="sub-lead">
-          Rekam jejak profesional yang berawal dari keahlian spesialis kemasan kayu industri sejak 2007, berkembang menjadi grup holding nasional 8 pilar bisnis.
+          Rekam jejak profesional yang berawal dari keahlian spesialis kemasan kayu industri sejak 2007, berkembang menjadi grup holding nasional 4 pilar bisnis unggulan.
         </p>
       </div>
     </section>
@@ -21,7 +21,7 @@
             Fasilitas <em>heat treatment</em> kami diinspeksi dan diverifikasi oleh Badan Karantina Pertanian (BARANTAN) Kementerian Pertanian Republik Indonesia, memastikan seluruh kemasan bebas dari hama perusak kayu untuk standar ekspor global.
           </p>
           <p>
-            Seiring pertumbuhan kepercayaan mitra dan tuntutan diversifikasi usaha, CV. Wanciruso bertransformasi menjadi <strong>PT Wanciruso Group Indonesia</strong> sebagai <em>holding company</em> yang menaungi 8 unit bisnis lintas sektor secara terpadu.
+            Seiring pertumbuhan kepercayaan mitra dan tuntutan diversifikasi usaha, CV. Wanciruso bertransformasi menjadi <strong>PT Wanciruso Group Indonesia</strong> sebagai <em>holding company</em> yang menaungi 4 pilar unit bisnis strategis secara terpadu.
           </p>
         </div>
 
@@ -64,7 +64,7 @@
 <script setup>
 useSeoMeta({
   title: 'Tentang Kami — PT Wanciruso Group Indonesia (WGI)',
-  description: 'Sejarah perkembangan PT Wanciruso Group Indonesia dari CV. Wanciruso (2007) spesialis ISPM#15 hingga menjadi holding company dengan 8 unit usaha.'
+  description: 'Sejarah perkembangan PT Wanciruso Group Indonesia dari CV. Wanciruso (2007) spesialis ISPM#15 hingga menjadi holding company dengan 4 pilar unit usaha unggulan.'
 })
 </script>
 

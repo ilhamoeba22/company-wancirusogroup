@@ -3,9 +3,9 @@
     <section class="page-header">
       <div class="wrap">
         <p class="eyebrow">Portfolio Bisnis</p>
-        <h1>Delapan Pilar Unit Usaha PT WGI</h1>
+        <h1>Empat Pilar Unit Usaha PT WGI</h1>
         <p class="sub-lead">
-          Perusahaan holding nasional dengan bisnis terintegrasi di 8 sektor strategis untuk mendukung pertumbuhan industri Indonesia.
+          Perusahaan holding nasional dengan portofolio bisnis terintegrasi di 4 sektor unggulan strategis untuk mendukung pertumbuhan industri dan operasional mitra.
         </p>
       </div>
     </section>
@@ -39,15 +39,8 @@
 <script setup>
 const units = [
   {
-    slug: 'perdagangan-ekspor-impor',
-    name: 'Perdagangan & Ekspor-Impor',
-    desc: 'Perdagangan umum komoditas serta kegiatan ekspor dan impor barang industri lintas batas.',
-    services: ['Perdagangan Komoditas', 'Jasa Ekspor-Impor', 'Customs Clearance'],
-    image: '/images/trade_export_import.jpg'
-  },
-  {
     slug: 'alat-berat',
-    name: 'Alat Berat & Perawatan',
+    name: 'Alat Berat & Service',
     desc: 'Jasa penyewaan, perawatan (service), dan pengadaan armada forklift dan mobile crane untuk operasional industri, pergudangan, dan proyek.',
     services: ['Sewa Forklift & Mobile Crane', 'Maintenance Service & Perawatan', 'Sparepart Support'],
     image: '/images/heavy_equipment.jpg'
@@ -60,45 +53,24 @@ const units = [
     image: '/images/transport_logistics.jpg'
   },
   {
-    slug: 'otomotif',
-    name: 'Otomotif & Maintenance',
-    desc: 'Layanan pencucian, perataan, dan salon perawatan mobil profesional.',
-    services: ['Auto Detailing', 'Car Wash Services', 'Perawatan Kendaraan'],
-    image: '/images/automotive_detailing.jpg'
-  },
-  {
-    slug: 'manufaktur-ispm15',
-    name: 'Manufaktur Kemasan Kayu (ISPM#15)',
-    desc: 'Produsen kemasan kayu industri (palet, crates, boxes, dunnage) bersertifikasi internasional ISPM#15 & BARANTAN sejak 2007.',
-    services: ['Palet Kayu Ekspor', 'Fasilitas Heat Treatment (HT)', 'Wooden Crates & Boxes'],
-    image: '/images/about_factory.jpg'
-  },
-  {
-    slug: 'konstruksi-real-estate',
-    name: 'Konstruksi & Real Estate',
-    desc: 'Jasa kontraktor konstruksi fisik, pengembangan properti komersial, dan perumahan.',
-    services: ['Kontraktor Bangunan', 'Pengembangan Real Estate', 'Manajemen Properti'],
-    image: '/images/construction_realestate.jpg'
-  },
-  {
     slug: 'percetakan',
-    name: 'Percetakan Komersial & Industri',
+    name: 'Percetakan Komersil',
     desc: 'Layanan percetakan cetak offset dan digital untuk kebutuhan promosi, kemasan, dan dokumen resmi.',
     services: ['Cetak Offset & Digital', 'Kemasan Cetak', 'Percetakan Korporat'],
     image: '/images/printing_press.jpg'
   },
   {
-    slug: 'agribisnis',
-    name: 'Agribisnis & Peternakan',
-    desc: 'Pengembangan sektor pertanian, peternakan, dan perikanan terpadu berkelanjutan.',
-    services: ['Pertanian Terpadu', 'Peternakan', 'Perikanan Darat'],
-    image: '/images/agribusiness_farm.jpg'
+    slug: 'otomotif',
+    name: 'Otomotif & Detailing',
+    desc: 'Layanan pencucian, perataan, dan salon perawatan mobil profesional.',
+    services: ['Auto Detailing', 'Car Wash Services', 'Perawatan Kendaraan'],
+    image: '/images/automotive_detailing.jpg'
   }
 ]
 
 useSeoMeta({
   title: 'Unit Usaha — PT Wanciruso Group Indonesia',
-  description: '8 Pilar Bisnis PT Wanciruso Group Indonesia: Perdagangan, Alat Berat, Transportasi, Otomotif, Manufaktur ISPM#15, Konstruksi, Percetakan, dan Agribisnis.'
+  description: '4 Pilar Bisnis Unggulan PT Wanciruso Group Indonesia: Alat Berat & Service, Transportasi & Angkutan Logistics, Percetakan Komersil, dan Otomotif & Detailing.'
 })
 </script>
 

@@ -58,7 +58,7 @@
               Hubungi Kantor Pusat &rarr;
             </NuxtLink>
             <NuxtLink to="/unit-usaha" class="btn btn-outline" style="margin-top: 10px; width: 100%; justify-content: center;">
-              &larr; Kembali ke 8 Unit
+              &larr; Kembali ke 4 Unit
             </NuxtLink>
           </div>
         </div>
@@ -187,6 +187,12 @@ import { useTheme } from '~/composables/useTheme'
 
 const route = useRoute()
 const slug = route.params.slug
+
+const allowedSlugs = ['alat-berat', 'transportasi-angkutan', 'percetakan', 'otomotif']
+
+if (!allowedSlugs.includes(slug)) {
+  await navigateTo('/unit-usaha', { replace: true, redirectCode: 302 })
+}
 
 const { theme, initTheme } = useTheme()
 const galleryViewMode = ref('3d')

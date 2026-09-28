@@ -5,7 +5,7 @@
         <p class="eyebrow">Karir & Peluang</p>
         <h1>Bekerja Bersama PT Wanciruso Group Indonesia</h1>
         <p class="sub-lead">
-          Bergabung bersama tim profesional yang dinamis dan bertumbuh dalam grup holding 8 unit usaha lintas sektor.
+          Bergabung bersama tim profesional yang dinamis dan bertumbuh dalam grup holding 4 pilar unit usaha lintas sektor.
         </p>
       </div>
     </section>

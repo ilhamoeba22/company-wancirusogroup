@@ -52,7 +52,7 @@ const fallbackCerts = [
     nama: 'NIB & Perizinan Berusaha Berbasis Risiko',
     nomor: 'NIB-9120301928471',
     penerbit: 'Kementerian Investasi / BKPM RI (OSS RBA)',
-    deskripsi: 'Perizinan legalitas induk holding PT Wanciruso Group Indonesia untuk 8 sektor usaha (Perdagangan, Alat Berat, Transportasi, Otomotif, Manufaktur, Konstruksi, Percetakan, Agribisnis).',
+    deskripsi: 'Perizinan legalitas induk holding PT Wanciruso Group Indonesia untuk sektor usaha strategis (Alat Berat & Service, Transportasi & Angkutan, Percetakan Komersil, Otomotif & Detailing).',
     standar: 'OSS RBA Legal Holding'
   }
 ]

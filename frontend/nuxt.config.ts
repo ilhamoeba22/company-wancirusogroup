@@ -11,7 +11,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'PT Wanciruso Group Indonesia (WGI) adalah perusahaan holding nasional yang menaungi 8 unit usaha lintas sektor: Perdagangan & Ekspor-Impor, Alat Berat, Transportasi, Otomotif, Manufaktur, Konstruksi & Real Estate, Percetakan, dan Agribisnis.' }
+        { name: 'description', content: 'PT Wanciruso Group Indonesia (WGI) adalah perusahaan holding nasional yang menaungi 4 unit usaha lintas sektor unggulan: Alat Berat & Service, Transportasi & Angkutan Logistics, Percetakan Komersil, dan Otomotif & Detailing.' }
       ],
       link: [
         { rel: 'icon', type: 'image/png', href: '/icon_wgi.png' }

@@ -10,7 +10,7 @@
               <small>PT WGI · Est. 2007</small>
             </span>
           </NuxtLink>
-          <p>Perusahaan holding nasional yang menaungi 8 unit usaha lintas sektor, berakar dari rekam jejak profesional sejak 2007 (CV. Wanciruso) dengan sertifikasi ISPM#15 &amp; BARANTAN.</p>
+          <p>Perusahaan holding nasional yang menaungi 4 pilar unit usaha unggulan, berakar dari rekam jejak profesional sejak 2007 (CV. Wanciruso) dengan sertifikasi ISPM#15 &amp; BARANTAN.</p>
         </div>
 
         <div class="foot-col">
@@ -22,12 +22,11 @@
         </div>
 
         <div class="foot-col">
-          <h4>8 Pilar Bisnis</h4>
-          <NuxtLink to="/unit-usaha/perdagangan-ekspor-impor">Perdagangan & Ekspor-Impor</NuxtLink>
-          <NuxtLink to="/unit-usaha/alat-berat">Alat Berat & Perawatan</NuxtLink>
+          <h4>4 Pilar Bisnis</h4>
+          <NuxtLink to="/unit-usaha/alat-berat">Alat Berat & Service</NuxtLink>
           <NuxtLink to="/unit-usaha/transportasi-angkutan">Transportasi & Angkutan</NuxtLink>
-          <NuxtLink to="/unit-usaha/manufaktur-ispm15">Manufaktur (ISPM#15)</NuxtLink>
-          <NuxtLink to="/unit-usaha/konstruksi-real-estate">Konstruksi & Real Estate</NuxtLink>
+          <NuxtLink to="/unit-usaha/percetakan">Percetakan Komersil</NuxtLink>
+          <NuxtLink to="/unit-usaha/otomotif">Otomotif & Detailing</NuxtLink>
         </div>
 
         <div class="foot-col foot-contact-col">

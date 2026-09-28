@@ -11,10 +11,10 @@
             <p class="eyebrow floating">Holding Company Lintas Sektor</p>
             <h1>Satu Grup, <br class="desktop-only" />Banyak <em>Sektor</em>, <br class="desktop-only" />Satu Komitmen Mitra.</h1>
             <p class="sub">
-              PT Wanciruso Group Indonesia (WGI) memposisikan diri sebagai perusahaan holding terkemuka yang menaungi 8 unit bisnis strategis. Kami menghadirkan standar internasional (ISPM#15 & BARANTAN), efisiensi operasional, dan tata kelola korporat terbaik bagi seluruh mitra bisnis dan investor.
+              PT Wanciruso Group Indonesia (WGI) memposisikan diri sebagai perusahaan holding terkemuka yang menaungi 4 unit bisnis strategis. Kami menghadirkan standar internasional (ISPM#15 & BARANTAN), efisiensi operasional, dan tata kelola korporat terbaik bagi seluruh mitra bisnis dan investor.
             </p>
             <div class="hero-actions">
-              <NuxtLink to="/unit-usaha" class="btn btn-primary">Jelajahi 8 Pilar Bisnis</NuxtLink>
+              <NuxtLink to="/unit-usaha" class="btn btn-primary">Jelajahi 4 Pilar Bisnis</NuxtLink>
               <NuxtLink to="/kontak" class="btn btn-outline">Konsultasi Kemitraan</NuxtLink>
             </div>
           </div>
@@ -24,7 +24,7 @@
               <div class="lbl">Awal Berdiri</div>
             </div>
             <div>
-              <div class="num">8</div>
+              <div class="num">4</div>
               <div class="lbl">Pilar Bisnis</div>
             </div>
             <div>
@@ -40,24 +40,24 @@
     <div class="marquee-wrap">
       <div class="marquee-track">
         <div class="grp">
-          <span>Perdagangan &amp; Ekspor-Impor</span>
           <span>Alat Berat &amp; Service</span>
           <span>Transportasi &amp; Angkutan</span>
+          <span>Percetakan Komersil</span>
           <span>Otomotif &amp; Detailing</span>
-          <span>Manufaktur (ISPM#15)</span>
-          <span>Konstruksi &amp; Real Estate</span>
-          <span>Percetakan</span>
-          <span>Agribisnis</span>
+          <span>Alat Berat &amp; Service</span>
+          <span>Transportasi &amp; Angkutan</span>
+          <span>Percetakan Komersil</span>
+          <span>Otomotif &amp; Detailing</span>
         </div>
         <div class="grp">
-          <span>Perdagangan &amp; Ekspor-Impor</span>
           <span>Alat Berat &amp; Service</span>
           <span>Transportasi &amp; Angkutan</span>
+          <span>Percetakan Komersil</span>
           <span>Otomotif &amp; Detailing</span>
-          <span>Manufaktur (ISPM#15)</span>
-          <span>Konstruksi &amp; Real Estate</span>
-          <span>Percetakan</span>
-          <span>Agribisnis</span>
+          <span>Alat Berat &amp; Service</span>
+          <span>Transportasi &amp; Angkutan</span>
+          <span>Percetakan Komersil</span>
+          <span>Otomotif &amp; Detailing</span>
         </div>
       </div>
     </div>
@@ -95,7 +95,7 @@
               <div class="tl-year">Kini</div>
               <div class="tl-body">
                 <h4>Transformasi Menjadi PT WGI</h4>
-                <p>Holding company nasional terintegrasi di 8 sektor usaha strategis.</p>
+                <p>Holding company nasional terintegrasi di 4 pilar sektor usaha strategis.</p>
               </div>
             </div>
           </div>
@@ -108,12 +108,12 @@
     </section>
 
 
-    <!-- UNIT USAHA (8 PILAR BISNIS) - DYNAMIC REST API CONSUMPTION -->
+    <!-- UNIT USAHA (4 PILAR BISNIS UTAMA) - DYNAMIC REST API CONSUMPTION -->
     <section id="unit">
       <div class="wrap">
         <div class="section-head">
           <p class="eyebrow">Portfolio Bisnis</p>
-          <h2>Delapan Pilar Bisnis PT WGI</h2>
+          <h2>Empat Pilar Bisnis Utama PT WGI</h2>
           <p>Beragam sektor strategis, dipandu oleh komitmen kualitas dan tata kelola korporat yang profesional.</p>
         </div>
 
@@ -180,8 +180,8 @@
           <div class="stat-lbl">Tahun Berdiri</div>
         </div>
         <div>
-          <div class="stat-num">8</div>
-          <div class="stat-lbl">Sektor Usaha</div>
+          <div class="stat-num">4</div>
+          <div class="stat-lbl">Sektor Utama</div>
         </div>
         <div>
           <div class="stat-num">56°C</div>
@@ -257,15 +257,13 @@ const getUnitSvg = (slug) => {
   return unitIcons[slug] || '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>'
 }
 
+const activeSlugs = ['alat-berat', 'transportasi-angkutan', 'percetakan', 'otomotif']
+
 const fallbackUnits = [
-  { slug: 'perdagangan-ekspor-impor', name: 'Perdagangan & Ekspor-Impor', desc: 'Perdagangan umum serta kegiatan ekspor dan impor barang komoditas industri.', image: unitImages['perdagangan-ekspor-impor'] },
-  { slug: 'alat-berat', name: 'Alat Berat & Perawatan', desc: 'Jasa penyewaan & perawatan forklift industri, mobile crane, dan alat berat.', image: unitImages['alat-berat'] },
+  { slug: 'alat-berat', name: 'Alat Berat & Service', desc: 'Jasa penyewaan & perawatan forklift industri, mobile crane, dan alat berat.', image: unitImages['alat-berat'] },
   { slug: 'transportasi-angkutan', name: 'Transportasi & Angkutan', desc: 'Jasa sewa angkutan dan armada transportasi logistik terpadu.', image: unitImages['transportasi-angkutan'] },
-  { slug: 'otomotif', name: 'Otomotif & Detailing', desc: 'Usaha pencucian dan salon perawatan mobil profesional.', image: unitImages['otomotif'] },
-  { slug: 'manufaktur-ispm15', name: 'Manufaktur (ISPM#15)', desc: 'Produksi kemasan kayu ekspor (palet, crates) bersertifikasi ISPM#15 sejak 2007.', image: unitImages['manufaktur-ispm15'] },
-  { slug: 'konstruksi-real-estate', name: 'Konstruksi & Real Estate', desc: 'Kegiatan kontraktor konstruksi serta pengembangan properti komersial.', image: unitImages['konstruksi-real-estate'] },
-  { slug: 'percetakan', name: 'Percetakan Komersial', desc: 'Kegiatan percetakan offset & digital untuk kebutuhan komersial.', image: unitImages['percetakan'] },
-  { slug: 'agribisnis', name: 'Agribisnis', desc: 'Kegiatan pertanian, peternakan, dan perikanan terpadu.', image: unitImages['agribisnis'] }
+  { slug: 'percetakan', name: 'Percetakan Komersil', desc: 'Kegiatan percetakan offset & digital untuk kebutuhan komersial.', image: unitImages['percetakan'] },
+  { slug: 'otomotif', name: 'Otomotif & Detailing', desc: 'Usaha pencucian dan salon perawatan mobil profesional.', image: unitImages['otomotif'] }
 ]
 
 const displayUnits = ref(fallbackUnits)
@@ -273,13 +271,16 @@ const displayUnits = ref(fallbackUnits)
 onMounted(async () => {
   const apiUnits = await fetchUnitUsaha()
   if (apiUnits && apiUnits.length > 0) {
-    displayUnits.value = apiUnits
+    const filtered = apiUnits.filter(u => activeSlugs.includes(u.slug))
+    if (filtered.length > 0) {
+      displayUnits.value = filtered
+    }
   }
 })
 
 useSeoMeta({
   title: 'PT Wanciruso Group Indonesia (WGI) — Perusahaan Holding Nasional',
-  description: 'PT Wanciruso Group Indonesia (WGI) menaungi 8 unit usaha lintas sektor dengan standar internasional ISPM#15 & BARANTAN.'
+  description: 'PT Wanciruso Group Indonesia (WGI) menaungi 4 unit usaha lintas sektor unggulan: Alat Berat & Service, Transportasi & Angkutan, Percetakan Komersil, dan Otomotif & Detailing.'
 })
 </script>
 

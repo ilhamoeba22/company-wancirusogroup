@@ -22,19 +22,10 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // Seed 8 Unit Usaha
+        // Seed Unit Usaha (4 Pilar Aktif Utama & 4 Unit Inactive)
         $units = [
             [
-                'nama_unit' => 'Perdagangan & Ekspor-Impor',
-                'slug' => 'perdagangan-ekspor-impor',
-                'deskripsi_umum' => 'Perdagangan umum serta kegiatan ekspor dan impor barang komoditas industri.',
-                'layanan_utama' => ['Perdagangan Komoditas', 'Jasa Ekspor-Impor', 'Customs Clearance'],
-                'keunggulan' => 'Jaringan kemitraan perdagangan global terpercaya.',
-                'target_pasar' => 'Perusahaan manufaktur, eksportir, dan pedagang komoditas.',
-                'urutan_tampil' => 1,
-            ],
-            [
-                'nama_unit' => 'Alat Berat & Perawatan',
+                'nama_unit' => 'Alat Berat & Service',
                 'slug' => 'alat-berat',
                 'deskripsi_umum' => 'Jasa penyewaan & perawatan armada forklift dan mobile crane untuk operasional industri & pergudangan.',
                 'layanan_utama' => ['Sewa Forklift & Mobile Crane', 'Maintenance Service Berkala', 'Sparepart Support'],
@@ -56,7 +47,8 @@ class DatabaseSeeder extends Seeder
                     '/images/alat-berat/alat_berat_12.webp',
                     '/images/alat-berat/alat_berat_13.webp',
                 ],
-                'urutan_tampil' => 2,
+                'urutan_tampil' => 1,
+                'status_publish' => true,
             ],
             [
                 'nama_unit' => 'Transportasi & Angkutan Logistics',
@@ -65,16 +57,38 @@ class DatabaseSeeder extends Seeder
                 'layanan_utama' => ['Sewa Truk & Trailer', 'Angkutan Logistik', 'Distribusi Regional'],
                 'keunggulan' => 'Pengiriman tepat waktu dengan armada terlacak GPS.',
                 'target_pasar' => 'Perusahaan logistik, distributor, dan industri manufaktur.',
-                'urutan_tampil' => 3,
+                'urutan_tampil' => 2,
+                'status_publish' => true,
             ],
             [
-                'nama_unit' => 'Otomotif & Maintenance',
+                'nama_unit' => 'Percetakan Komersil',
+                'slug' => 'percetakan',
+                'deskripsi_umum' => 'Layanan percetakan offset dan digital untuk kebutuhan promosi & kemasan.',
+                'layanan_utama' => ['Cetak Offset & Digital', 'Kemasan Cetak', 'Percetakan Korporat'],
+                'keunggulan' => 'Hasil cetak tajam, konsisten, dan waktu pengerjaan cepat.',
+                'target_pasar' => 'Perusahaan, instansi, dan pelaku UMKM.',
+                'urutan_tampil' => 3,
+                'status_publish' => true,
+            ],
+            [
+                'nama_unit' => 'Otomotif & Detailing',
                 'slug' => 'otomotif',
                 'deskripsi_umum' => 'Layanan pencucian dan salon perawatan mobil profesional.',
                 'layanan_utama' => ['Auto Detailing', 'Car Wash Services', 'Perawatan Kendaraan'],
                 'keunggulan' => 'Peralatan modern dan bahan perawatan kualitas premium.',
                 'target_pasar' => 'Pemilik kendaraan pribadi dan armada operasional perusahaan.',
                 'urutan_tampil' => 4,
+                'status_publish' => true,
+            ],
+            [
+                'nama_unit' => 'Perdagangan & Ekspor-Impor',
+                'slug' => 'perdagangan-ekspor-impor',
+                'deskripsi_umum' => 'Perdagangan umum serta kegiatan ekspor dan impor barang komoditas industri.',
+                'layanan_utama' => ['Perdagangan Komoditas', 'Jasa Ekspor-Impor', 'Customs Clearance'],
+                'keunggulan' => 'Jaringan kemitraan perdagangan global terpercaya.',
+                'target_pasar' => 'Perusahaan manufaktur, eksportir, dan pedagang komoditas.',
+                'urutan_tampil' => 5,
+                'status_publish' => false,
             ],
             [
                 'nama_unit' => 'Manufaktur Kemasan Kayu (ISPM#15)',
@@ -83,7 +97,8 @@ class DatabaseSeeder extends Seeder
                 'layanan_utama' => ['Palet Kayu Standar Ekspor', 'Fasilitas Heat Treatment (HT)', 'Wooden Crates & Boxes'],
                 'keunggulan' => 'Berpengalaman sejak 2007 (CV. Wanciruso) dengan sertifikasi verifikasi resmi BARANTAN.',
                 'target_pasar' => 'Perusahaan manufaktur ekspor, pergudangan, dan logistik internasional.',
-                'urutan_tampil' => 5,
+                'urutan_tampil' => 6,
+                'status_publish' => false,
             ],
             [
                 'nama_unit' => 'Konstruksi & Real Estate',
@@ -92,16 +107,8 @@ class DatabaseSeeder extends Seeder
                 'layanan_utama' => ['Kontraktor Bangunan', 'Pengembangan Real Estate', 'Manajemen Properti'],
                 'keunggulan' => 'Konstruksi berkualitas tinggi dan desain bangunan fungsional.',
                 'target_pasar' => 'Pengembang perumahan, pemilik kawasan industri, dan komersial.',
-                'urutan_tampil' => 6,
-            ],
-            [
-                'nama_unit' => 'Percetakan Komersial',
-                'slug' => 'percetakan',
-                'deskripsi_umum' => 'Layanan percetakan offset dan digital untuk kebutuhan promosi & kemasan.',
-                'layanan_utama' => ['Cetak Offset & Digital', 'Kemasan Cetak', 'Percetakan Korporat'],
-                'keunggulan' => 'Hasil cetak tajam, konsisten, dan waktu pengerjaan cepat.',
-                'target_pasar' => 'Perusahaan, instansi, dan pelaku UMKM.',
                 'urutan_tampil' => 7,
+                'status_publish' => false,
             ],
             [
                 'nama_unit' => 'Agribisnis & Peternakan',
@@ -111,6 +118,7 @@ class DatabaseSeeder extends Seeder
                 'keunggulan' => 'Pengelolaan lahan ramah lingkungan & hasil panen berkualitas.',
                 'target_pasar' => 'Distributor bahan pangan, pasar komoditas, dan industri olahan.',
                 'urutan_tampil' => 8,
+                'status_publish' => false,
             ],
         ];
 
