@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
     {
         // Admin User
         User::updateOrCreate(
-            ['email' => 'admin@wancirusogroup.co.id'],
+            ['email' => 'pt.wancirusogroupindonesia@gmail.com'],
             [
                 'name' => 'Super Admin WGI',
-                'password' => Hash::make('password123'),
+                'password' => Hash::make('wancirusogroup@123'),
             ]
         );
 
