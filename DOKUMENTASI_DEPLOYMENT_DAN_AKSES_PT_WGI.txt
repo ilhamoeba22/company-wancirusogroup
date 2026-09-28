@@ -1,0 +1,174 @@
+================================================================================
+DOKUMENTASI LENGKAP DEPLOYMENT, KREDENSIAL & AKSES SISTEM
+PT WANCIRUSO GROUP INDONESIA (WGI)
+================================================================================
+Tanggal Rilis Deployment : 28 September 2026
+Status Sistem           : PRODUCTION / LIVE (HTTPS AKTIF)
+Domain Utama            : https://wancirusogroupindonesia.com
+Subdomain API Backend   : https://api.wancirusogroupindonesia.com
+Panel Admin             : https://wancirusogroupindonesia.com/admin/login
+================================================================================
+
+
+--------------------------------------------------------------------------------
+1. KREDENSIAL PANEL ADMIN (FILAMENT CMS)
+--------------------------------------------------------------------------------
+Panel ini digunakan oleh admin internal PT Wanciruso Group Indonesia untuk
+mengelola data Unit Usaha, Berita Korporat, Sertifikasi, Permintaan Investor,
+Pusat Unduhan, serta Formulir Kemitraan.
+
+* URL Login     : https://wancirusogroupindonesia.com/admin/login
+  (Alternatif)  : https://api.wancirusogroupindonesia.com/admin/login
+* Email Login   : pt.wancirusogroupindonesia@gmail.com
+* Password      : wancirusogroup@123
+* Role Akun     : Super Admin WGI
+* Engine CMS    : Laravel 11 + Filament v3/v4 + Livewire
+
+
+--------------------------------------------------------------------------------
+2. KREDENSIAL HOSTING & CPANEL (RUMAHWEB INDONESIA)
+--------------------------------------------------------------------------------
+Digunakan untuk mengelola layanan hosting, file manager, database, dan email domain.
+
+* Penyedia Layanan  : Rumahweb Indonesia (Clientzone: https://clientzone.rumahweb.com)
+* Paket Layanan     : Unlimited M Shared Hosting (OS: AlmaLinux 9 Enterprise)
+* Server Hostname   : embaloh.iixcp.rumahweb.net
+* IP Server Hosting : 202.10.43.45 (Shared IP: 202.10.43.44)
+* URL Akses cPanel  : https://embaloh.iixcp.rumahweb.net:2083
+  (Alternatif)      : https://wancirusogroupindonesia.com/cpanel
+* Username cPanel   : want1647
+* Password cPanel   : Muhammad@1234
+* Web Server Engine : LiteSpeed Enterprise Web Server
+* PHP Version       : PHP 8.3 (ea-php83)
+
+
+--------------------------------------------------------------------------------
+3. KREDENSIAL & PANDUAN AKSES REMOTE SSH / SFTP
+--------------------------------------------------------------------------------
+Digunakan untuk menjalankan perintah terminal (CLI), git pull, artisan, composer,
+maupun transfer file cepat melalui port secure shell.
+
+* Host Server       : embaloh.iixcp.rumahweb.net (atau 202.10.43.45)
+* Port SSH          : 2223  <-- (PENTING: Rumahweb menggunakan port 2223, BUKAN 22)
+* Username SSH      : want1647
+* Password SSH      : Muhammad@1234
+* Metode Otentikasi : Mendukung Password & SSH Public Key (Keyless Authentication)
+* File Public Key   : Tersimpan di server pada ~/.ssh/authorized_keys
+
+Contoh Perintah Koneksi SSH dari Terminal Laptop:
+$ ssh -p 2223 want1647@embaloh.iixcp.rumahweb.net
+
+Contoh Perintah Upload File via SFTP/SCP:
+$ scp -P 2223 nama_file.zip want1647@embaloh.iixcp.rumahweb.net:/home/want1647/public_html/
+
+
+--------------------------------------------------------------------------------
+4. KREDENSIAL BASIS DATA (MYSQL / MARIADB)
+--------------------------------------------------------------------------------
+Digunakan oleh aplikasi Laravel Backend untuk menyimpan data dinamis website.
+
+* Database Driver   : MySQL / MariaDB (10.x)
+* Database Host     : 127.0.0.1 (atau localhost)
+* Database Port     : 3306
+* Nama Database     : want1647_wgi
+* Username Database : want1647_wgi_user
+* Password Database : Muhammad@1234
+* Charset           : utf8mb4
+* Collation         : utf8mb4_unicode_ci (Kompatibel penuh dengan MariaDB Rumahweb)
+
+
+--------------------------------------------------------------------------------
+5. ARSITEKTUR & STRUKTUR FOLDER DI SERVER
+--------------------------------------------------------------------------------
+Struktur folder dirancang dengan standar keamanan enterprise di mana seluruh logic
+dan file sensitif (.env, vendor, database) diletakkan di LUAR public_html.
+
+/home/want1647/
+│
+├── public_html/                       --> DOKUMEN ROOT FRONTEND (NUXT 3 SSG)
+│   ├── index.html                     --> Halaman Beranda (Landing Page WGI)
+│   ├── 200.html & 404.html            --> SPA Client-side Fallback Nuxt
+│   ├── _nuxt/                         --> Bundle Aset JavaScript & CSS Kompilasi
+│   ├── images/                        --> Foto banner, galeri alat berat, logo & favicon
+│   ├── unit-usaha/                    --> Halaman detail unit usaha pre-rendered
+│   ├── tentang-kami/                  --> Halaman profil & struktur holding
+│   ├── berita/                        --> Halaman artikel & siaran pers
+│   ├── kontak/ & karir/               --> Halaman kontak & karir
+│   ├── css/, js/, fonts/              --> Aset vendor bawaan Filament Admin
+│   ├── storage/                       --> Symlink ke api_backend/storage/app/public
+│   ├── api_backend                    --> Symlink internal ke /home/want1647/api_backend
+│   └── .htaccess                      --> Konfigurasi Rewrite LiteSpeed (Nuxt + API + Admin)
+│
+├── api_backend/                       --> APLIKASI LARAVEL 11 BACKEND (TERISOLASI AMAN)
+│   ├── .env                           --> Konfigurasi environment (DB, APP_KEY, dll)
+│   ├── app/                           --> Model, Controller, Filament Resources
+│   ├── bootstrap/                     --> File cache bootstrap Laravel
+│   ├── config/                        --> Konfigurasi cors, database, app
+│   ├── database/                      --> Migrasi dan DatabaseSeeder
+│   ├── storage/                       --> File upload media & log sistem
+│   ├── vendor/                        --> Dependensi Composer
+│   └── public/                        --> Front controller index.php Laravel
+│
+├── composer.phar                      --> Binary Composer 2.x
+└── .ssh/authorized_keys               --> Public key SSH terdaftar
+
+
+--------------------------------------------------------------------------------
+6. PENGATURAN DOMAIN, SUBDOMAIN & DNS (NAMESERVER)
+--------------------------------------------------------------------------------
+* Domain Utama          : wancirusogroupindonesia.com
+* Subdomain API         : api.wancirusogroupindonesia.com
+* Document Root Utama   : /home/want1647/public_html
+* Document Root Subdomain: /home/want1647/public_html/api_backend/public
+* Nameserver Hosting    :
+    1. ns1.rumahweb.com
+    2. ns2.rumahweb.com
+    3. ns3.rumahweb.net
+    4. ns4.rumahweb.net
+
+Konfigurasi DNS Management (di Clientzone Rumahweb jika diperlukan):
+- Record A Domain Utama : wancirusogroupindonesia.com  --> 202.10.43.45
+- Record A Subdomain    : api.wancirusogroupindonesia.com  --> 202.10.43.45
+
+
+--------------------------------------------------------------------------------
+7. DAFTAR UNIT USAHA AKTIF (PUBLISH)
+--------------------------------------------------------------------------------
+Sesuai arahan, saat ini hanya 4 Unit Usaha Utama yang diaktifkan dan tampil
+di website publik:
+1. Alat Berat & Service (Slug: alat-berat) - Disertai galeri 13 foto armada
+2. Transportasi & Angkutan Logistics (Slug: transportasi-angkutan)
+3. Percetakan Komersil (Slug: percetakan)
+4. Otomotif & Detailing (Slug: otomotif)
+
+*Catatan: 4 Unit Usaha lainnya (Perdagangan Ekspor-Impor, Manufaktur Kayu ISPM#15,
+Konstruksi Real Estate, dan Agribisnis Peternakan) statusnya di-set "Draft"
+(Unpublished) di database dan sewaktu-waktu dapat diaktifkan kembali melalui Admin Panel.*
+
+
+--------------------------------------------------------------------------------
+8. PERINTAH MAINTENANCE PENTING (CHEATSHEET SSH)
+--------------------------------------------------------------------------------
+Jika di masa mendatang Anda ingin melakukan update kode melalui SSH:
+
+A. Update Backend Laravel:
+   cd /home/want1647/api_backend
+   /opt/cpanel/ea-php83/root/usr/bin/php artisan migrate --force
+   /opt/cpanel/ea-php83/root/usr/bin/php artisan config:cache
+   /opt/cpanel/ea-php83/root/usr/bin/php artisan route:cache
+   /opt/cpanel/ea-php83/root/usr/bin/php artisan view:cache
+
+B. Update Frontend Nuxt (Build di Komputer Lokal):
+   cd D:\Kerjaan\PROJECT\laragon\www\wancirusogroup\frontend
+   npm run generate
+   tar -czf frontend_dist.tar.gz -C .output/public .
+   scp -P 2223 frontend_dist.tar.gz want1647@embaloh.iixcp.rumahweb.net:/home/want1647/public_html/
+   # Lalu extract di server:
+   ssh -p 2223 want1647@embaloh.iixcp.rumahweb.net "cd /home/want1647/public_html && tar -xzf frontend_dist.tar.gz && rm -f frontend_dist.tar.gz"
+
+C. Membersihkan Cache LiteSpeed Web Server:
+   rm -rf /home/want1647/lscache/*
+
+================================================================================
+DOKUMENTASI INI BERSIFAT RAHASIA. SIMPAN DI TEMPAT YANG AMAN.
+================================================================================
