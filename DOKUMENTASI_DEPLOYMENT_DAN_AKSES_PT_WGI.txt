@@ -167,7 +167,27 @@ B. Update Frontend Nuxt (Build di Komputer Lokal):
    ssh -p 2223 want1647@embaloh.iixcp.rumahweb.net "cd /home/want1647/public_html && tar -xzf frontend_dist.tar.gz && rm -f frontend_dist.tar.gz"
 
 C. Membersihkan Cache LiteSpeed Web Server:
-   rm -rf /home/want1647/lscache/*
+--------------------------------------------------------------------------------
+9. FITUR ANALITIK PENGUNJUNG & MENU PUSAT DOKUMEN BARU
+--------------------------------------------------------------------------------
+A. Dashboard Visitor Analytics & Grafik Tren Pengunjung Harian:
+   - Terintegrasi langsung di Dashboard Admin (https://wancirusogroupindonesia.com/admin).
+   - Menampilkan 4 Kartu KPI Utama:
+     1. Kunjungan Hari Ini (Total pageviews hari ini beserta indikator naik/turun vs kemarin)
+     2. Pengunjung Unik Hari Ini (Jumlah visitor unik berdasarkan IP yang dienkripsi/hash)
+     3. Kunjungan Minggu Ini (Akumulasi kunjungan dalam 7 hari terakhir)
+     4. Pesan Kemitraan B2B (Total leads pengajuan kemitraan yang masuk)
+   - Grafik Tren Kunjungan Harian (Interactive Dual-Line Chart):
+     * Garis Merah WGI: Total Kunjungan (Pageviews)
+     * Garis Biru: Pengunjung Unik (Unique Visitors)
+     * Filter Waktu: Dapat memilih rentang 7 Hari Terakhir, 14 Hari Terakhir, atau 30 Hari Terakhir.
+   - Mekanisme Tracking:
+     * Frontend Nuxt mengirimkan ping analitik non-blocking via POST /api/v1/track-visit setiap kali halaman dibuka.
+     * Tidak membebani loading website karena berjalan di background (client-side asynchronous).
+
+B. Menu Pusat Unduhan & Dokumen (PusatUnduhanResource):
+   - Menu baru di Dashboard Admin untuk mengunggah dan mengelola dokumen perusahaan,
+     seperti Company Profile PDF, Katalog Sewa Forklift, Brosur Layanan, dan Form Legalitas.
 
 ================================================================================
 DOKUMENTASI INI BERSIFAT RAHASIA. SIMPAN DI TEMPAT YANG AMAN.
