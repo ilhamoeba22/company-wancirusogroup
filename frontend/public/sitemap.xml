@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Halaman Utama (Homepage) -->
+  <url>
+    <loc>https://wancirusogroupindonesia.com/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- Tentang Kami -->
+  <url>
+    <loc>https://wancirusogroupindonesia.com/tentang-kami</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Index Unit Usaha -->
+  <url>
+    <loc>https://wancirusogroupindonesia.com/unit-usaha</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <!-- 4 Unit Usaha Utama -->
+  <url>
+    <loc>https://wancirusogroupindonesia.com/unit-usaha/alat-berat</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://wancirusogroupindonesia.com/unit-usaha/transportasi-angkutan</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wancirusogroupindonesia.com/unit-usaha/percetakan</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wancirusogroupindonesia.com/unit-usaha/otomotif</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Sertifikasi Standar Mutu -->
+  <url>
+    <loc>https://wancirusogroupindonesia.com/sertifikasi</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Berita & Siaran Pers -->
+  <url>
+    <loc>https://wancirusogroupindonesia.com/berita</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wancirusogroupindonesia.com/berita/penambahan-armada-alat-berat-2026</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wancirusogroupindonesia.com/berita/perluasan-fasilitas-heat-treatment-ispm15</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wancirusogroupindonesia.com/berita/penerapan-standar-esg-holding</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <!-- Kontak & Karir -->
+  <url>
+    <loc>https://wancirusogroupindonesia.com/kontak</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wancirusogroupindonesia.com/karir</loc>
+    <lastmod>2026-09-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>
