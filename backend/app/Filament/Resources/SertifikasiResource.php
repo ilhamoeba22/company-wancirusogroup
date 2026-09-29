@@ -5,12 +5,13 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\SertifikasiResource\Pages;
 use App\Models\Sertifikasi;
 use Filament\Schemas\Schema;
-use Filament\Schemas\Components\TextInput;
-use Filament\Schemas\Components\Textarea;
-use Filament\Schemas\Components\Toggle;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Actions\EditAction;
 
 class SertifikasiResource extends Resource
 {
@@ -40,7 +41,7 @@ class SertifikasiResource extends Resource
                 Tables\Columns\IconColumn::make('tampil_publik')->boolean(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
             ]);
     }
 

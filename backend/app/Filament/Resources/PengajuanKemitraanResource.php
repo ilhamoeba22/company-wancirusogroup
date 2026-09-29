@@ -5,11 +5,12 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\PengajuanKemitraanResource\Pages;
 use App\Models\PengajuanKemitraan;
 use Filament\Schemas\Schema;
-use Filament\Schemas\Components\TextInput;
-use Filament\Schemas\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Actions\EditAction;
 
 class PengajuanKemitraanResource extends Resource
 {
@@ -43,7 +44,7 @@ class PengajuanKemitraanResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')->dateTime()->sortable(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
             ]);
     }
 

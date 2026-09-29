@@ -29,9 +29,9 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('PT Wanciruso Group Indonesia')
-            ->brandLogo(asset('images/logo_wgi.png'))
+            ->brandLogo(fn () => asset('images/logo_wgi.png'))
             ->brandLogoHeight('2.5rem')
-            ->favicon(asset('images/icon_wgi.png'))
+            ->favicon(fn () => asset('images/icon_wgi.png'))
             ->colors([
                 'primary' => Color::Red,
             ])
