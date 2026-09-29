@@ -7,6 +7,7 @@ use App\Models\UnitUsaha;
 use App\Models\Sertifikasi;
 use App\Models\Berita;
 use App\Models\PengajuanKemitraan;
+use App\Models\VisitorLog;
 use Illuminate\Http\Request;
 
 class PublicApiController extends Controller
@@ -87,5 +88,25 @@ class PublicApiController extends Controller
             'message' => 'Pengajuan kemitraan berhasil dikirim.',
             'data' => $submission
         ], 201);
+    }
+
+    public function trackVisit(Request $request)
+    {
+        try {
+            $path = $request->input('path')
+                ?? (json_decode($request->getContent(), true)['path'] ?? null)
+                ?? '/';
+            VisitorLog::recordVisit($request, $path);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Visit logged'
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
     }
 }

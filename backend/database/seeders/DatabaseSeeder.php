@@ -159,5 +159,33 @@ class DatabaseSeeder extends Seeder
                 'status_publish' => true,
             ]
         );
+
+        // Seed Initial Visitor Logs (Past 7 Days Traffic Trend)
+        if (\App\Models\VisitorLog::count() === 0) {
+            $pages = ['/', '/unit-usaha', '/tentang-kami', '/sertifikasi', '/kontak', '/unit-usaha/alat-berat', '/berita'];
+            $devices = ['Desktop', 'Desktop', 'Mobile', 'Mobile', 'Desktop'];
+
+            for ($i = 6; $i >= 0; $i--) {
+                $date = now()->subDays($i);
+                $dailyViews = rand(24, 58);
+                $uniqueIps = rand(12, 28);
+
+                $ipPool = [];
+                for ($u = 0; $u < $uniqueIps; $u++) {
+                    $ipPool[] = hash('sha256', "sample_visitor_{$u}_{$i}");
+                }
+
+                for ($v = 0; $v < $dailyViews; $v++) {
+                    \App\Models\VisitorLog::create([
+                        'ip_hash' => $ipPool[array_rand($ipPool)],
+                        'url' => $pages[array_rand($pages)],
+                        'device' => $devices[array_rand($devices)],
+                        'visit_date' => $date->toDateString(),
+                        'created_at' => $date->copy()->setTime(rand(7, 22), rand(0, 59)),
+                        'updated_at' => $date->copy()->setTime(rand(7, 22), rand(0, 59)),
+                    ]);
+                }
+            }
+        }
     }
 }
